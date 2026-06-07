@@ -15,70 +15,42 @@ import math       # import math module to calculate total price of order, etc.
 YR_LVL = range(9, 14)
 
 # Declaring global variables
+food_menu_items = {
+        "  -> Eggs Benedict Deluxe       -   $17.50" : 17.50,
+        "  -> Custom Omelette            -   $17.50" : 17.50,
+        "  -> Omelette                   -   $15.20" : 15.20,
+        "  -> Scrambled Eggs             -   $15.00" : 15.00,
+        "  -> Poached Eggs               -   $12.90" : 12.90,
+        "  -> French Toast + Butter      -    $9.60" : 9.60,
+        "         * berries, banana, maple syrup          -   +$2.00ea" : 2.00,
+        "  -> Cheesy Garlic Bread        -    $4.00" : 4.00,
+        "  -> Cheese Toastie             -    $3.90" : 3.90,
+        "  -> Mushroom Toastie           -    $3.90" : 3.90,
+        "  -> Smashed Avocado Toast      -    $3.90" : 3.90,
+        "  -> Buttermilk Pancakes        -   $13.50" : 13.50,
+        "         * berries, molten chocolate, ice cream  -   +$2.00ea" : 2.00,
+        "  -> Nutella Pancakes           -   $12.80" : 12.80,
+        "  -> Double Choc Pancakes       -   $12.00" : 12.00,
+        "  -> Avocado + Chicken Burger   -   $10.20" : 10.20,
+        "  -> Vege Pea Protein Burger    -    $9.70" : 9.70,
+        "  -> English Muffin Cheese Melt -    $6.10" : 6.10,
+        "  -> Creamy Chicken Alfredo     -   $13.60" : 13.60,
+        "         * GF pasta                              -   +$1.30ea" : 1.30,
+        "  -> Meatballs Marinara         -   $13.20" : 13.20,
+        "  -> Pesto Pasta                -   $12.90" : 12.90,
+        "  -> Mac N' Cheese              -    $9.90" : 9.90
+    }
+
 order = {}  # empty dictionary to store user's order details
 
 # Menu Function
 def order_menu():
-    menu = ("-----All Day Menu-----\n"
-            "\n"
-            "Eggs Eggs Eggs - feat. white/grain toast                 \n"
-            "  -> Eggs Benedict Deluxe                         $17.50 \n"
-            "  -> Custom Omelette                              $17.50 \n"
-            "  -> Omelette                                     $15.20 \n"
-            "  -> Scrambled Eggs                               $15.00 \n"
-            "  -> Poached Eggs                                 $12.90 \n"
-            "\n"
-            "Toast Toast Toast                                        \n"
-            "  -> French Toast + Butter                         $9.60 \n"
-            "         * berries, banana, maple syrup          + $2.00ea\n"
-            "  -> Cheesy Garlic Deluxe                          $4.00 \n"
-            "  -> Cheese Toastie                                $3.90 \n"
-            "  -> Mushroom Toastie                              $3.90 \n"
-            "  -> Smashed Avocado                               $3.90 \n"
-            "\n"
-            "Pancakes Pancakes Pancakes                                \n"
-            "  -> Classic Buttermilk + Maple Syrup              $13.50 \n"
-            "         * berries, molten chocolate, ice cream  + $2.00ea\n"
-            "  -> Nutella + Chocolate Ice Cream                 $12.80 \n"
-            "  -> Butter + Vanilla Ice Cream                    $12.00 \n"
-            "\n"
-            "Burgers Burgers Burgers                                   \n"
-            "  -> Smashed Avocado + Chicken                     $10.20 \n"
-            "  -> Vege Patty + Leafy Greens                     $8.70  \n"
-            "  -> Hamburger + Cheese Melt                       $8.50  \n"
-            "  -> Cheeseburger + English Muffin                 $6.10  \n"
-            "\n"
-            "Pasta Pasta Pasta                                         \n"
-            "        * fettuccine, penne, spagetti, macaroni    $0.00  \n"
-            "        * GF pasta                               + $1.30ea\n"
-            "  -> alfredo + creamy chicken                      $13.60 \n"
-            "  -> marinara + meatballs                          $13.20 \n"
-            "  -> pesto                                         $12.90 \n"
-            "  -> mac n' cheese                                 $9.90  \n"
-            "\n"
-            "Drinks Drinks Drinks                                      \n"
-            "COLD                                                      \n"
-            "  -> Smoothies                                     $6.20  \n"
-            "       * mango, mixed berry, lime tropical twist          \n"
-            "  -> Juices                                        $3.60  \n"
-            "       * apple, orange, mango + orangem, tropical         \n"
-            "  -> Aloe Vera                                     $4.20  \n"
-            "  -> Iced Coffee                                   $5.50  \n"
-            "  -> Iced Chocolate                                $4.90  \n"
-            "HOT                                                       \n"
-            "  -> Chai Latte                                    $5.20  \n"
-            "  -> Matcha Latte                                  $6.10  \n"
-            "  -> Cappuccino                                    $7.20  \n"
-            "  -> Espresso                                      $7.50  \n"
-            "  -> Flat White                                    $6.30  \n"
-            "  -> Americano                                     $6.80  \n"
-            "  -> Mocha                                         $6.40  \n"
-            "  -> Hot Chocolate                                 $5.90  \n"
-            "      * DELUXE: 4 pumps of molten chocolate      + $1.50ea\n"
-            "      * STANDARD: 2 pumps of molten chocolate    + $0.00ea\n"
-            "  -> Tea                                           $3.30  \n"
-          )
-    easygui.codebox("BDSC School Cafe - All Day Menu", "Cafe Menu", menu)
+    message = "Please select your items"
+    title4 = "BDSC School Cafe - All Day Food Menu"
+    chosen = easygui.choicebox(message, title4, list(food_menu_items.keys()))
+    if chosen:
+        for item in chosen:
+            order[item] = food_menu_items[item]
 
 # Function to calculate total price of order
 def calculate_total_price(order):
@@ -86,14 +58,14 @@ def calculate_total_price(order):
 
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
-title = "Welcome Page"
-easygui.msgbox(welcome, title) # printing welcome messagebox to user
+title1 = "Welcome Page"
+easygui.msgbox(welcome, title1) # printing welcome messagebox to user
 
 # Asking if user wishes to proceed
 proceed = "BDSC School Cafe Click and Collect will need you to enter some of your details.\nDo you wish to continue?"
-title = "Permission to Ask User Details"
+title2 = "Permission to Ask User Details"
 choices = ["Yes. Login into platform", "No. Exit out of platform."]
-reply = easygui.choicebox(proceed, title, choices)    # using choicebox to ask user which option they want to choose (login or exit)
+reply = easygui.choicebox(proceed, title2, choices)    # using choicebox to ask user which option they want to choose (login or exit)
 
 if reply == choices[0]:    # using indexing to determine which option user chose
     # If "Yes. Login into platform" is chosen:
@@ -130,9 +102,9 @@ while True:
 def display_main_menu():
     while True:
         main_menu = "Would you like to order from the cafe menu?"
-        title = "Main Menu"
+        title3 = "Main Menu"
         choices = ["Yes. Show me the menu!", "No. Exit out of platform."]
-        reply = easygui.choicebox(main_menu, title, choices)    # using choicebox to ask user if they want to see the cafe menu or exit
+        reply = easygui.choicebox(main_menu, title3, choices)    # using choicebox to ask user if they want to see the cafe menu or exit
         
         if reply == choices[0]:
             order_menu()
