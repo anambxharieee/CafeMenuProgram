@@ -9,12 +9,12 @@ organisation and efficiency.'''
 # Modules
 import easygui    # import easygui module so easygui functions can be used in program (e.g. easygui.msgbox(), easygui.enterbox(), etc.)
 import sys        # import sys module so sys functions can be used in program (e.g. sys.exit())
-import math       # import math module to calculate total price of order, etc.
 
 # Declaring constants
 YR_LVL = range(9, 14)
+
 # Declaring global variables
-food_menu_items = {
+menu_items = {
         "  -> Eggs Benedict Deluxe       -   $17.50" : 17.50,
         "  -> Custom Omelette            -   $17.50" : 17.50,
         "  -> Omelette                   -   $15.20" : 15.20,
@@ -37,22 +37,45 @@ food_menu_items = {
         "         * GF pasta                              -   +$1.30ea" : 1.30,
         "  -> Meatballs Marinara         -   $13.20" : 13.20,
         "  -> Pesto Pasta                -   $12.90" : 12.90,
-        "  -> Mac N' Cheese              -    $9.90" : 9.90
+        "  -> Mac N' Cheese              -    $9.90" : 9.90,
+        "  -> Mango Smoothie             -    $6.20" : 6.20,
+        "  -> Mixed Berry Smoothie       -    $6.20" : 6.20,
+        "  -> Lime Tropical Smoothie     -    $6.20" : 6.20,
+        "  -> Apple Juice                -    $3.60" : 3.60,
+        "  -> Orange Juice               -    $3.60" : 3.60,
+        "  -> Mango + Orange Juice       -    $3.60" : 3.60,
+        "  -> Tropical Juice             -    $3.60" : 3.60,
+        "  -> Aloe Vera                  -    $4.20" : 4.20,
+        "  -> Iced Coffee                -    $5.50" : 5.50,
+        "  -> Iced Chocolate             -    $4.90" : 4.90,
+        "  -> Chai Latte                 -    $5.20" : 5.20,
+        "  -> Matcha Latte               -    $6.10" : 6.10,
+        "  -> Cappuccino                 -    $7.20" : 7.20,
+        "  -> Espresso                   -    $7.50" : 7.50,
+        "  -> Flat White                 -    $6.30" : 6.30,
+        "  -> Americano                  -    $6.80" : 6.80,
+        "  -> Mocha                      -    $6.40" : 6.40,
+        "  -> Hot Chocolate              -    $5.90" : 5.90,
+        "      * DELUXE: 4 pumps of molten chocolate     -    +$1.50ea" : 1.50,
+        "      * STANDARD: 2 pumps of molten chocolate   -    +$0.50ea" : 0.50,
+        "  -> Tea                        -    $3.30" : 3.30
     }
 
-order = {}  # empty dictionary to store user's order details
+order = {}     # empty dictionary to store user's order details
 
+# Declaring All Functions
 # Menu Function
 def order_menu():
+    order.clear()   # resets order each time user orders
     message = "Please select your items"
     title4 = "BDSC School Cafe - All Day Food Menu"
-    chosen = easygui.multchoicebox(message, title4, list(food_menu_items.keys()))
+    chosen = easygui.multchoicebox(message, title4, list(menu_items.keys()))
     if chosen:
         for item in chosen:
-            order[item] = food_menu_items[item]
+            order[item] = menu_items[item]
 
 def invoice():
-    def calculate_subtotal_price(order):    # Function to calculate subtotal price of order (before gst)
+    def calculate_subtotal_price():    # Function to calculate subtotal price of order (before gst)
         subtotal_price = sum(order.values())
         return subtotal_price
 
@@ -60,15 +83,22 @@ def invoice():
         gst = calculate_subtotal_price() * 0.15
         total_price = calculate_subtotal_price() + gst
         return total_price
-    invoice_order = ("===================================================\n"
-                     "                   Order Invoice                   \n"
-                     "===================================================\n"
-                     f"Name:             {name}\n",
-                     f"Year Level:             {yr_lvl}\n",
-                     f"Subtotal Price:             $ {calculate_subtotal_price()}\n",
-                     f"Total Price:             $ {calculate_total_price()}\n"
+    
+    order_list = ""     # empty string to store user's ordered items in
+    for item in order.keys():
+        order_list += f"{item}\n"    # '+=' adds item to string on a brand new line
+
+    order_invoice = ("Order Invoice\n"
+                     f"Name:                                       {name}\n"
+                     f"Year Level:                                    {yr_lvl}\n"
+                     f"Pick Up Time:                         {time}\n"
+                     f"Order:\n{order_list}"
+                     f"Subtotal Price:          $ {calculate_subtotal_price():.2f}\n"
+                     f"GST (15%):               $ {calculate_subtotal_price() * 0.15:.2f}\n"
+                     f"Total Price:             $ {calculate_total_price():.2f}\n"
                      )
-    easygui.codebox(invoice_order)
+    easygui.codebox("Please see your Order Invoice below:", "Invoice Receipt", order_invoice)
+
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
 title1 = "Welcome Page"
@@ -112,6 +142,13 @@ while True:
     else:
         easygui.msgbox("Invalid input. Please enter only numbers and a year level between 9 and 13.")  # exceeds boundaries of year level range
 
+# Asking user what time they would like to pick up their order
+pickup_time = "What time would you like to pick up your order?"
+title5 = "Order Pick Up Time"
+time_choices = ["Before School", "Morning Tea", "Lunch", "After School"]
+time = easygui.choicebox(pickup_time, title5, time_choices)
+
+# Order Main Menu
 def display_main_menu():
     while True:
         main_menu = "Would you like to order from the cafe menu?"
@@ -121,7 +158,7 @@ def display_main_menu():
         
         if reply == choices[0]:
             order_menu()
-            
+            invoice()  
 
         elif reply == choices[1]:
             sys.exit(easygui.msgbox("Sad to see you go! Come back soon!"))
