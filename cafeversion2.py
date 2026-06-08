@@ -13,7 +13,6 @@ import math       # import math module to calculate total price of order, etc.
 
 # Declaring constants
 YR_LVL = range(9, 14)
-
 # Declaring global variables
 food_menu_items = {
         "  -> Eggs Benedict Deluxe       -   $17.50" : 17.50,
@@ -47,14 +46,21 @@ order = {}  # empty dictionary to store user's order details
 def order_menu():
     message = "Please select your items"
     title4 = "BDSC School Cafe - All Day Food Menu"
-    chosen = easygui.choicebox(message, title4, list(food_menu_items.keys()))
+    chosen = easygui.multchoicebox(message, title4, list(food_menu_items.keys()))
     if chosen:
         for item in chosen:
             order[item] = food_menu_items[item]
 
-# Function to calculate total price of order
+# Function to calculate subtotal price of order (before gst)
+def calculate_subtotal_price(order):
+    subtotal_price = sum(order.values())
+    return subtotal_price
+
+# Function to calculate total price of order (after gst)
 def calculate_total_price(order):
-    return(math.fsum(order.values()))   # using math to carry out math.fsum() so that total price of order can be calculated through addition
+    gst = calculate_subtotal_price() * 0.15
+    total_price = calculate_subtotal_price() + gst
+    return total_price
 
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
@@ -108,6 +114,7 @@ def display_main_menu():
         
         if reply == choices[0]:
             order_menu()
+
 
         elif reply == choices[1]:
             sys.exit(easygui.msgbox("Sad to see you go! Come back soon!"))
