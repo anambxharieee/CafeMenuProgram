@@ -51,17 +51,24 @@ def order_menu():
         for item in chosen:
             order[item] = food_menu_items[item]
 
-# Function to calculate subtotal price of order (before gst)
-def calculate_subtotal_price(order):
-    subtotal_price = sum(order.values())
-    return subtotal_price
+def invoice():
+    def calculate_subtotal_price(order):    # Function to calculate subtotal price of order (before gst)
+        subtotal_price = sum(order.values())
+        return subtotal_price
 
-# Function to calculate total price of order (after gst)
-def calculate_total_price(order):
-    gst = calculate_subtotal_price() * 0.15
-    total_price = calculate_subtotal_price() + gst
-    return total_price
-
+    def calculate_total_price():     # Function to calculate total price of order (after gst)
+        gst = calculate_subtotal_price() * 0.15
+        total_price = calculate_subtotal_price() + gst
+        return total_price
+    invoice_order = ("===================================================\n"
+                     "                   Order Invoice                   \n"
+                     "===================================================\n"
+                     f"Name:             {name}\n",
+                     f"Year Level:             {yr_lvl}\n",
+                     f"Subtotal Price:             $ {calculate_subtotal_price()}\n",
+                     f"Total Price:             $ {calculate_total_price()}\n"
+                     )
+    easygui.codebox(invoice_order)
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
 title1 = "Welcome Page"
@@ -99,11 +106,11 @@ while True:
 # Asking year level details
 while True:
     yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so user can enter their year level as an integer
-    if yr_lvl in YR_LVL:   # using 'in' operator to check if year level is within the range of 9-13
-        easygui.msgbox(f"Great! Since you are in year {yr_lvl},\nyou may continue on in using the BDSC School Cafe Click and Collect!")   # confirming user's year level
+    if yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
+        easygui.msgbox(f"Thank you {name} for entering your user details.\nYour request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
         break   # breaks loop if a valid year level is entered
     else:
-        easygui.msgbox("Invalid input. Please enter a year level between 9 and 13.")  # exceeds boundaries of year level range
+        easygui.msgbox("Invalid input. Please enter only numbers and a year level between 9 and 13.")  # exceeds boundaries of year level range
 
 def display_main_menu():
     while True:
@@ -114,7 +121,7 @@ def display_main_menu():
         
         if reply == choices[0]:
             order_menu()
-
+            
 
         elif reply == choices[1]:
             sys.exit(easygui.msgbox("Sad to see you go! Come back soon!"))
