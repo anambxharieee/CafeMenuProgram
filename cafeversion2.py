@@ -122,7 +122,6 @@ else:
     # If user closes or cancels the dialog box by accident:
     sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
-
 # Asking user details
 # Asking name details
 while True:
