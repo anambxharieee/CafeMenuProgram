@@ -11,7 +11,8 @@ import easygui    # import easygui module so easygui functions can be used in pr
 import sys        # import sys module so sys functions can be used in program (e.g. sys.exit())
 
 # Declaring constants
-YR_LVL = range(9, 14)
+YR_LVL = range(9, 14)    # students
+AGE = range(21, 71)      # teaching staff
 
 # Declaring global variables
 menu_items = {
@@ -127,31 +128,78 @@ else:
     sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
 # Asking user details
-# Asking name details
+# Asking first name details
 while True:
-    name = easygui.enterbox("Enter your name: ")    # using enterbox so user can enter their name
-    if name.isalpha():    # using isalpha() to check if name only contains letters
-        easygui.msgbox(f"Hi {name}!!")   # greeting user by their name
+    first_name = easygui.enterbox("Enter your first name: ")    # using enterbox so user can enter their name
+    if first_name.isalpha():    # using isalpha() to check if name only contains letters
         break
     else:
         easygui.msgbox("Invalid input. Please enter only letters for your name.")
 
-# Asking year level details
+# Asking last name details
 while True:
-    yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so user can enter their year level as an integer
-    
-    # If user's year level is in range
-    if yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
-        easygui.msgbox(f"Thank you {name} for entering your user details.\nYour request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
-        break   # breaks loop if a valid year level is entered
-
-    # If user's year level is NOT in range
-    elif yr_lvl != range(9,14):
-        sys.exit(easygui.msgbox(f"Sorry {name}, you are not able to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
-
-    # If user closes or cancels the dialog box by accident:
+    last_name = easygui.enterbox("Enter your last name: ")    # using enterbox so user can enter their name
+    if last_name.isalpha():    # using isalpha() to check if name only contains letters
+        name = f"{first_name} {last_name}"        # 'name' variable combining 'first_name' and 'last_name' variables content
+        easygui.msgbox(f"Hi {name}!! Please continue filling out user details.")   # greeting user by their name
+        break
     else:
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        easygui.msgbox("Invalid input. Please enter only letters for your name.")
+
+# Asking if user is student or teaching staff
+ask_occupation = "Before we continue further, are you a student or apart of teaching staff?\nPlease specify by choosing one of the options below."
+title6 = "Asking Occupation"
+occupation_choices = ["Student", "Teaching Staff"]
+specify = easygui.choicebox(ask_occupation, title6, occupation_choices)
+
+# Student - Occupation
+if specify == occupation_choices[0]:
+    while True:
+    # Asking year level details
+        yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so integers are only allowed, increased validity
+        
+        # If user's year level is within range
+        if yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
+            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
+            break   # breaks loop if a valid year level is entered
+
+        # If user's year level is NOT within range
+        elif yr_lvl != YR_LVL:
+            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
+
+        # If user closes or cancels the dialog box by accident:
+        else:
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+
+# Teaching Staff - Occupation
+elif specify == occupation_choices[1]:
+    while True:
+    # Asking age details
+        age = easygui.integerbox("Enter your age: ")   # using integerbox so integers are only allowed, increased validity
+        
+        # If user's age is within range
+        if age in AGE:
+            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
+            break
+        # If user's age is NOT within range
+        else:
+            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
+
+    # Asking job role details
+        asking_jobrole = "Please select your current, main job role for further verification:"
+        title7 = "Job Occupation"
+        jobrole_choices = ["Student Services", "Senior Leadership Team", "International", "Head of Learning Area", "Whanau Leader", "Teaching Staff", "Operational Staff"]
+
+        job = easygui.choicebox(asking_jobrole, title7, jobrole_choices)
+
+        if jobrole_choices:
+            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
+            break
+
+# If user closes or cancels the dialog box by accident:
+else:
+    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+
 
 # Asking user what time they would like to pick up their order
 pickup_time = "What time would you like to pick up your order?"
@@ -179,10 +227,11 @@ def display_main_menu():
         if reply == choices[0]:
             order_menu()
             invoice()
+            easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
 
 
         elif reply == choices[1]:
-            sys.exit(easygui.msgbox("Sad to see you go! Come back soon!"))
+            sys.exit(easygui.msgbox(f"Sad to see you go! Come back soon {name}!"))
         
         else:
             sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
