@@ -139,17 +139,34 @@ while True:
 # Asking year level details
 while True:
     yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so user can enter their year level as an integer
+    
+    # If user's year level is in range
     if yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
         easygui.msgbox(f"Thank you {name} for entering your user details.\nYour request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
         break   # breaks loop if a valid year level is entered
+
+    # If user's year level is NOT in range
+    elif yr_lvl != range(9,14):
+        sys.exit(easygui.msgbox(f"Sorry {name}, you are not able to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
+
+    # If user closes or cancels the dialog box by accident:
     else:
-        easygui.msgbox("Invalid input. Please enter only numbers and a year level between 9 and 13.")  # exceeds boundaries of year level range
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
 # Asking user what time they would like to pick up their order
 pickup_time = "What time would you like to pick up your order?"
 title5 = "Order Pick Up Time"
 time_choices = ["Before School", "Morning Tea", "Lunch", "After School"]
 time = easygui.choicebox(pickup_time, title5, time_choices)
+
+# If user picks a time for order pick up
+if time_choices:
+    easygui.msgbox(f"Thank you {name} for clarifying when you will be able to pick up your order.")
+
+# If user closes or cancels the dialog box by accident:
+else:
+    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        
 
 # Order Main Menu
 def display_main_menu():
@@ -161,7 +178,8 @@ def display_main_menu():
         
         if reply == choices[0]:
             order_menu()
-            invoice()  
+            invoice()
+
 
         elif reply == choices[1]:
             sys.exit(easygui.msgbox("Sad to see you go! Come back soon!"))
