@@ -179,22 +179,25 @@ elif specify == occupation_choices[1]:
         
         # If user's age is within range
         if age in AGE:
-            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
+            easygui.msgbox(f"Age is within the range. Please continue on to the next part.")
             break
         # If user's age is NOT within range
-        else:
+        elif age != AGE:
             sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
-
-    # Asking job role details
+        else:
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+# Asking job role details
         asking_jobrole = "Please select your current, main job role for further verification:"
         title7 = "Job Occupation"
-        jobrole_choices = ["Student Services", "Senior Leadership Team", "International", "Head of Learning Area", "Whanau Leader", "Teaching Staff", "Operational Staff"]
+        jobrole_choices = ["", "Student Services", "Senior Leadership Team", "International", "Head of Learning Area", "Whanau Leader", "Teaching Staff", "Operational Staff"]
 
         job = easygui.choicebox(asking_jobrole, title7, jobrole_choices)
-
-        if jobrole_choices:
+        if jobrole_choices[1:7]:
             easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
-            break
+        elif jobrole_choices == "":
+            easygui.msgbox("Sorry, that is not a valid job field. Please specify through options 1. to 7.")
+        else:
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
 # If user closes or cancels the dialog box by accident:
 else:
