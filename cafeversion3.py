@@ -142,8 +142,9 @@ def invoice():
                      "                           Order Invoice                           \n"
                      "===================================================================\n"
                      f"Name:                                               {name}\n"
-                     f"Occupation:                                      {specify}\n"
+                     f"Occupation:                                  {specify}\n"
                      f"Level:                                            {yr_lvl}\n"
+                     f"Email Address:                     {user_email}\n"
                      
                      f"Pick Up Time:                                     {time}\n"
                      "-------------------------------------------------------------------\n"
