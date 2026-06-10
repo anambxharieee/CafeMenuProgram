@@ -15,65 +15,111 @@ YR_LVL = range(9, 14)    # students
 AGE = range(21, 71)      # teaching staff
 
 # Declaring global variables
-menu_items = {
-        "  -> Eggs Benedict Deluxe       -   $17.50" : 17.50,
-        "  -> Custom Omelette            -   $17.50" : 17.50,
-        "  -> Omelette                   -   $15.20" : 15.20,
-        "  -> Scrambled Eggs             -   $15.00" : 15.00,
-        "  -> Poached Eggs               -   $12.90" : 12.90,
-        "  -> French Toast + Butter      -    $9.60" : 9.60,
-        "         * berries, banana, maple syrup          -   +$2.00ea" : 2.00,
-        "  -> Cheesy Garlic Bread        -    $4.00" : 4.00,
-        "  -> Cheese Toastie             -    $3.90" : 3.90,
-        "  -> Mushroom Toastie           -    $3.90" : 3.90,
-        "  -> Smashed Avocado Toast      -    $3.90" : 3.90,
-        "  -> Buttermilk Pancakes        -   $13.50" : 13.50,
-        "         * berries, molten chocolate, ice cream  -   +$2.00ea" : 2.00,
-        "  -> Nutella Pancakes           -   $12.80" : 12.80,
-        "  -> Double Choc Pancakes       -   $12.00" : 12.00,
-        "  -> Avocado + Chicken Burger   -   $10.20" : 10.20,
-        "  -> Vege Pea Protein Burger    -    $9.70" : 9.70,
-        "  -> English Muffin Cheese Melt -    $6.10" : 6.10,
-        "  -> Creamy Chicken Alfredo     -   $13.60" : 13.60,
-        "         * GF pasta                              -   +$1.30ea" : 1.30,
-        "  -> Meatballs Marinara         -   $13.20" : 13.20,
-        "  -> Pesto Pasta                -   $12.90" : 12.90,
-        "  -> Mac N' Cheese              -    $9.90" : 9.90,
-        "  -> Mango Smoothie             -    $6.20" : 6.20,
-        "  -> Mixed Berry Smoothie       -    $6.20" : 6.20,
-        "  -> Lime Tropical Smoothie     -    $6.20" : 6.20,
-        "  -> Apple Juice                -    $3.60" : 3.60,
-        "  -> Orange Juice               -    $3.60" : 3.60,
-        "  -> Mango + Orange Juice       -    $3.60" : 3.60,
-        "  -> Tropical Juice             -    $3.60" : 3.60,
-        "  -> Aloe Vera                  -    $4.20" : 4.20,
-        "  -> Iced Coffee                -    $5.50" : 5.50,
-        "  -> Iced Chocolate             -    $4.90" : 4.90,
-        "  -> Chai Latte                 -    $5.20" : 5.20,
-        "  -> Matcha Latte               -    $6.10" : 6.10,
-        "  -> Cappuccino                 -    $7.20" : 7.20,
-        "  -> Espresso                   -    $7.50" : 7.50,
-        "  -> Flat White                 -    $6.30" : 6.30,
-        "  -> Americano                  -    $6.80" : 6.80,
-        "  -> Mocha                      -    $6.40" : 6.40,
-        "  -> Hot Chocolate              -    $5.90" : 5.90,
-        "      * DELUXE: 4 pumps of molten chocolate     -    +$1.50ea" : 1.50,
-        "      * STANDARD: 2 pumps of molten chocolate   -    +$0.50ea" : 0.50,
-        "  -> Tea                        -    $3.30" : 3.30
+food_menu_items = {
+    "Morning Tea": {
+        "Eggs Benedict Deluxe\n  + grain toast, hollandaise  - $13.50" : 13.50,
+        "Omelette                      - $12.20"                       : 12.20,
+        "Scrambled Eggs + Grain Toast  - $10.00"                       : 10.00,
+        "Poached Eggs + Grain Toast    -  $9.90"                       :  9.90,
+        "French Toast + Butter + Maple -  $9.60"                       :  9.60,
+        "  + berries, whipped cream    -  +$2.00"                      :  2.00,
+        "Buttermilk Pancakes           - $13.50"                       : 13.50,
+        "  + berries, choc ice cream   -  +$2.00"                      :  2.00,
+        "Nutella Pancakes              - $12.80"                       : 12.80,
+        "Double Choc Pancakes          - $12.00"                       : 12.00,
+        "Cheesy Garlic Bread           -  $4.00"                       :  4.00,
+        "Cheese Toastie                -  $3.90"                       :  3.90,
+        "Mushroom Toastie              -  $3.90"                       :  3.90,
+        "Smashed Avocado Toast         -  $3.90"                       :  3.90,
+    },
+    "Lunch": {
+        "Avocado + Chicken Burger            - $10.20" : 10.20,
+        "Vege Pea Protein Burger             -  $9.70" :  9.70,
+        "English Muffin Cheese Melt          -  $6.10" :  6.10,
+        "Creamy Chicken Alfredo              - $13.60" : 13.60,
+        "  + GF pasta                        -  +$1.30":  1.30,
+        "Meatballs Marinara                  - $13.20" : 13.20,
+        "Pesto Pasta                         - $12.90" : 12.90,
+        "  + GF pasta                        -  +$1.30":  1.30,
+        "Mac N' Cheese                       -  $9.90" :  9.90,
+        "Chicken Nuggets                     -  $7.50" :  7.50,
+        "Chicken Nuggets + Fries Combo       - $10.50" : 10.50,
+        "Soy Bao Bun                         -  $4.50" :  4.50,
+        "Chicken Bao Bun                     -  $4.50" :  4.50,
+        "Butter Chicken + Rice               - $11.20" : 11.20,
+        "Lamb Dumplings                      -  $9.50" :  9.50,
+        "Wontons                             -  $8.50" :  8.50,
+        "Grilled Chicken + Hummus            - $11.50" : 11.50,
+        "Tacos                               -  $6.10" :  6.10,
+        "Rice Paper Vege Rolls + Sweet Chilli-  $8.50" :  8.50,
+    },
+    "Snacks": {
+        "Salted Chips                  - $2.50"                                :  2.50,
+        "Doritos                       - $2.50"                                :  2.50,
+        "Vege Chips                    - $2.50"                                :  2.50,
+        "Chunky Chocolate Chip Cookie  - $4.20"                                :  4.20,
+        "Brownie                       - $3.50"                                :  3.50,
+        "Double Choc Muffin            - $3.90"                                :  3.90,
+        "Fruit Salad\n  + apple, banana, pineapple, peach, nectarine  - $4.10" :  4.10,
+        "Yoghurt + Fresh Fruit Cup     - $4.50"                                :  4.50,
+        "Rice Crackers                 - $2.20"                                :  2.20,
+        "Hot Wedges                    - $4.50"                                :  4.50,
+        "Loaded Fries                  - $6.50"                                :  6.50,
+        "Hashbrown                     - $1.50"                                :  1.50,
     }
+}
 
+drinks_menu_items = {
+    "Cold Drinks": {
+        "Mango Smoothie          - $6.20" :  6.20,
+        "Mixed Berry Smoothie    - $6.20" :  6.20,
+        "Lime Tropical Smoothie  - $6.20" :  6.20,
+        "Apple Juice             - $3.60" :  3.60,
+        "Orange Juice            - $3.60" :  3.60,
+        "Mango + Orange Juice    - $3.60" :  3.60,
+        "Tropical Juice          - $3.60" :  3.60,
+        "Aloe Vera               - $4.20" :  4.20,
+        "Iced Coffee             - $5.50" :  5.50,
+        "Iced Chocolate          - $4.90" :  4.90,
+    },
+    "Hot Drinks": {
+        "Chai Latte                         - $5.20" :  5.20,
+        "Matcha Latte                       - $6.10" :  6.10,
+        "Cappuccino                         - $7.20" :  7.20,
+        "Espresso                           - $7.50" :  7.50,
+        "Flat White                         - $6.30" :  6.30,
+        "Americano                          - $6.80" :  6.80,
+        "Mocha                              - $6.40" :  6.40,
+        "Hot Chocolate                      - $4.70" :  4.70,
+        "  + deluxe (4 pumps molten choc)   - +$1.50":  1.50,
+        "  + standard (2 pumps molten choc) - +$0.50":  0.50,
+        "Tea                                - $3.30" :  3.30,
+    }
+}
 order = {}     # empty dictionary to store user's order details
 
 # Declaring All Functions
 # Menu Function
-def order_menu():
-    order.clear()   # resets order each time user orders
-    message = "Please select your items"
+def food_order_menu(): 
+    order.clear()   # resets order each time user orders   
+    food_category = "Which category?"
+    title9 = "Food Menu"
+    food_message = "Please select your food order items."
     title4 = "BDSC School Cafe - All Day Food Menu"
-    chosen = easygui.multchoicebox(message, title4, list(menu_items.keys()))
+    chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items[category].keys()))
+    
     if chosen:
         for item in chosen:
-            order[item] = menu_items[item]
+            order[item] = food_menu_items[item]
+    
+def drinks_order_menu():
+    order.clear()   # resets order each time user orders   
+    drinks_message = "Please select your drinks order items."
+    title8 = "BDSC School Cafe - All Day Food Menu"
+    chosen = easygui.multchoicebox(drinks_message, title8, list(drinks_menu_items.keys()))
+    if chosen:
+        for item in chosen:
+            order[item] = drinks_menu_items[item]
 
 def invoice():
     def calculate_subtotal_price():    # Function to calculate subtotal price of order (before gst)
@@ -158,82 +204,102 @@ if specify == occupation_choices[0]:
     # Asking year level details
         yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so integers are only allowed, increased validity
         
+        # If user closes or cancels the dialog box by accident
+        if yr_lvl is None:      # None means nothing was entered
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+
         # If user's year level is within range
-        if yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
+        elif yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
             easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
             break   # breaks loop if a valid year level is entered
 
         # If user's year level is NOT within range
-        elif yr_lvl != YR_LVL:
-            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
-
-        # If user closes or cancels the dialog box by accident:
         else:
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
 
 # Teaching Staff - Occupation
 elif specify == occupation_choices[1]:
     while True:
-    # Asking age details
+        # Asking age details
         age = easygui.integerbox("Enter your age: ")   # using integerbox so integers are only allowed, increased validity
         
+        # If user closes or cancels the dialog box by accident
+        if age is None:       # None means nothing was entered
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        
         # If user's age is within range
-        if age in AGE:
+        elif age in AGE:
             easygui.msgbox(f"Age is within the range. Please continue on to the next part.")
-            break
+            break   # exits loop once valid age is confirmed
+        
         # If user's age is NOT within range
-        elif age != AGE:
+        else:
             sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
-        else:
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
-# Asking job role details
-        asking_jobrole = "Please select your current, main job role for further verification:"
-        title7 = "Job Occupation"
-        jobrole_choices = ["", "Student Services", "Senior Leadership Team", "International", "Head of Learning Area", "Whanau Leader", "Teaching Staff", "Operational Staff"]
 
-        job = easygui.choicebox(asking_jobrole, title7, jobrole_choices)
-        if jobrole_choices[1:7]:
-            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
-        elif jobrole_choices == "":
-            easygui.msgbox("Sorry, that is not a valid job field. Please specify through options 1. to 7.")
-        else:
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    # Asking job role details
+    asking_jobrole = "Please select your current, main job role for further verification:"
+    title7 = "Job Occupation"
+    jobrole_choices = ["", "1. Student Services", "2. Senior Leadership Team", "3. International", "4. Head of Learning Area", "5. Whanau Leader", "6. Teaching Staff", "7. Operational Staff"]
 
+    job = easygui.choicebox(asking_jobrole, title7, jobrole_choices)
+    
+    # If user closes or cancels the dialog box by accident
+    if job is None:         # None means nothing was entered
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    
+    # If user selected the blank option, meaning no valid role chosen
+    elif job == "":
+        easygui.msgbox("Sorry, that is not a valid job field. Please specify through options 1. to 7.")
+    
+    # If user selected a valid job role, approve their access
+    else:
+        easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation.\nYour request in using the BDSC School Cafe Click and Collect is approved!")
+        
 # If user closes or cancels the dialog box by accident:
 else:
     sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
 
 # Asking user what time they would like to pick up their order
-pickup_time = "What time would you like to pick up your order?"
-title5 = "Order Pick Up Time"
-time_choices = ["Before School", "Morning Tea", "Lunch", "After School"]
-time = easygui.choicebox(pickup_time, title5, time_choices)
+while True:
+    pickup_time = "What time would you like to pick up your order?"
+    title5 = "Order Pickup Time"
+    time_choices = ["", "1. Before School", "2. Morning Tea", "3. Lunch", "4. After School"]
+    time = easygui.choicebox(pickup_time, title5, time_choices)
 
-# If user picks a time for order pick up
-if time_choices:
-    easygui.msgbox(f"Thank you {name} for clarifying when you will be able to pick up your order.")
+    # If user closes or cancels the dialog box by accident:
+    if time is None:
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        break          # breaks while loop and closes tab when user cancels or closes the dialog box
 
-# If user closes or cancels the dialog box by accident:
-else:
-    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
-        
+    # If user selected the blank option, meaning no valid time for order pick up was chosen
+    elif time == "":
+        easygui.msgbox("Sorry, that is not a valid order pickup time field.\nPlease specify through options 1. to 4.")
+
+    # If user picks a time for order pickup
+    else:
+        easygui.msgbox(f"Thank you {name} for clarifying when you will be able to pick up your order.")
+        break          # breaks while loop and stops code from repeating continuously after user specifies order pickup time
 
 # Order Main Menu
 def display_main_menu():
     while True:
-        main_menu = "Would you like to order from the cafe menu?"
+        main_menu = "Would you like to order from the cafe menu? If so, please specify which menu you would like to order from.\nFood or Drinks?"
         title3 = "Main Menu"
-        choices = ["Yes. Show me the menu!", "No. Exit out of platform."]
+        choices = ["Take me to the food menu!", "Take me to the drinks menu", "None, Exit me out of the platform!"]
         reply = easygui.choicebox(main_menu, title3, choices)    # using choicebox to ask user if they want to see the cafe menu or exit
         
         if reply == choices[0]:
-            order_menu()
+            food_order_menu()
             invoice()
             easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
 
-
         elif reply == choices[1]:
+            drinks_order_menu()
+            invoice()
+            easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+
+        elif reply == choices[2]:
             sys.exit(easygui.msgbox(f"Sad to see you go! Come back soon {name}!"))
         
         else:
