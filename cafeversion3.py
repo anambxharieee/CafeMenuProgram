@@ -24,7 +24,9 @@ ALLOWED_EMAIL_DOMAINS = (      # email domains allowed in program
     "@yahoo.co.nz"
 )
 
-# Declaring global variables
+# Declaring global variables 
+# Global variable - food_menu_items
+# **Dictionary format is inconsistent due to formatting on easygui.multchoicebox() - no other option**
 food_menu_items = {
     "Morning Tea                                                     " :  0,
     "   Eggs Benedict Deluxe  + grain toast, hollandaise                         - $13.50"       : 13.50,
@@ -72,6 +74,7 @@ food_menu_items = {
     "   Hot Wedges                                                                                        - $4.50"  :  4.50,
     "   Loaded Fries                                                                                        - $6.50" :  6.50,
     "   Hashbrown                                                                                          - $1.50"  : 1.50,
+    "                                         "                                             :  0,
 }
 
 drinks_menu_items = {
@@ -145,8 +148,7 @@ def invoice():
                      f"Occupation:                                  {specify}\n"
                      f"Level:                                            {yr_lvl}\n"
                      f"Email Address:                     {user_email}\n"
-                     
-                     f"Pick Up Time:                                     {time}\n"
+                     f"Pick Up Time:                                  {time}\n"
                      "-------------------------------------------------------------------\n"
                      f"Order:\n{order_list}"
                      "-------------------------------------------------------------------\n"
@@ -183,18 +185,33 @@ else:
 # Asking first name details
 while True:
     first_name = easygui.enterbox("Enter your first name: ")    # using enterbox so user can enter their name
-    if first_name.isalpha():    # using isalpha() to check if name only contains letters
-        break
+     # If user closes or cancels the dialog box by accident
+    if first_name is None:      # None means nothing was entered
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    # If user enters valid first name
+    elif first_name.isalpha():    # using isalpha() to check if name only contains letters
+        first_name = first_name.capitalize()
+        break      # breaks loop
+    # If user enters any special characters or numbers in first name
     else:
         easygui.msgbox("Invalid input. Please enter only letters for your name.")
 
 # Asking last name details
 while True:
     last_name = easygui.enterbox("Enter your last name: ")    # using enterbox so user can enter their name
-    if last_name.isalpha():    # using isalpha() to check if name only contains letters
-        name = f"{first_name} {last_name}"        # 'name' variable combining 'first_name' and 'last_name' variables content
-        easygui.msgbox(f"Hi {name}!! Please continue filling out user details.")   # greeting user by their name
-        break
+    
+    # If user closes or cancels the dialog box by accident
+    if last_name is None:      # None means nothing was entered
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    
+    # If user enters valid last name
+    elif last_name.isalpha():    # using isalpha() to check if name only contains letters
+        last_name = last_name.capitalize()
+        name = f"{first_name} {last_name}"        # assigning 'name' variable combining 'first_name' and 'last_name' variables content
+        easygui.msgbox(f"Hi {name}! Please continue filling out user details.")   # greeting user by their name
+        break      # breaks loop
+    
+    # If user enters any special characters or numbers in first name
     else:
         easygui.msgbox("Invalid input. Please enter only letters for your name.")
 
@@ -206,8 +223,8 @@ specify = easygui.choicebox(ask_occupation, title6, occupation_choices)
 
 # Student - Occupation
 if specify == occupation_choices[0]:
+    # Asking year level details using while loop
     while True:
-    # Asking year level details
         yr_lvl = easygui.integerbox("Enter your year level: ")   # using integerbox so integers are only allowed, increased validity
         
         # If user closes or cancels the dialog box by accident
@@ -221,12 +238,12 @@ if specify == occupation_choices[0]:
 
         # If user's year level is NOT within range
         else:
-            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
+            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
 
 # Teaching Staff - Occupation
 elif specify == occupation_choices[1]:
+    # Asking age details using while loop 
     while True:
-        # Asking age details
         age = easygui.integerbox("Enter your age: ")   # using integerbox so integers are only allowed, increased validity
         
         # If user closes or cancels the dialog box by accident
@@ -240,9 +257,9 @@ elif specify == occupation_choices[1]:
         
         # If user's age is NOT within range
         else:
-            sys.exit(easygui.msgbox(f"Sorry {name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
+            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
 
-    # Asking job role details - loop until valid selection
+    # Asking job role details using loop until valid selection
     while True:
         asking_jobrole = "Please select your current, main job role for further verification:"
         title7 = "Job Occupation"
@@ -256,7 +273,7 @@ elif specify == occupation_choices[1]:
         
         # If user selected the blank option, meaning no valid role chosen
         elif job == "":
-            easygui.msgbox("Sorry, that is not a valid job field. Please specify through options 1. to 7.")
+            easygui.msgbox(f"Sorry {first_name}, that is not a valid job field. Please specify through options 1. to 7.")
         
         # If user selected a valid job role, approve their access
         else:
@@ -269,7 +286,7 @@ else:
     sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
 
 while True:
-    email_prompt = f"Please enter your email address, {name}, so we can notify you when your order is ready or if any problems occur:"
+    email_prompt = f"Please enter your email address, {first_name}, so we can notify you when your order is ready or if any problems occur:"
     title10 = "Contact: Email Address"
 
     user_email = easygui.enterbox(email_prompt, title10)
@@ -280,7 +297,7 @@ while True:
 
     # If user had valid email     # makes sure email removes whitespace, all lowercase and uses correct, valid email domains
     if user_email.strip().lower().endswith(ALLOWED_EMAIL_DOMAINS):
-        easygui.msgbox(f"You have successfully verified your user identity.\nYour email {user_email} contains an approved domain.")
+        easygui.msgbox(f"Congratulations {first_name}! You have successfully verified your user identity.\nYour email {user_email} contains an approved domain.")
         break
     
     # If user writes invalid syntax in email
@@ -300,11 +317,11 @@ while True:
 
     # If user selected the blank option, meaning no valid time for order pick up was chosen
     elif time == "":
-        easygui.msgbox("Sorry, that is not a valid order pickup time field.\nPlease specify through options 1. to 4.")
+        easygui.msgbox(f"Sorry {first_name}, that is not a valid order pickup time field.\nPlease specify through options 1. to 4.")
 
     # If user picks a time for order pickup
     else:
-        easygui.msgbox(f"Thank you {name} for clarifying when you will be able to pick up your order.")
+        easygui.msgbox(f"Thank you {first_name} for clarifying when you will be able to pick up your order.")
         break          # breaks while loop and stops code from repeating continuously after user specifies order pickup time
 
 # Order Main Menu
@@ -331,21 +348,21 @@ def display_main_menu():
             reply2 = ask_more_items()
             if reply2 == "Yes please! I would like to order more food.":
                 food_order_menu()
-                easygui.msgbox("Sorry, you cannot add items to your order more than twice due to other customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
 
             elif reply2 == "Yes please! I would like to order more drinks.":
                 drinks_order_menu()
-                easygui.msgbox("Sorry, you cannot add items to your order more than twice due to other customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
             else:
-                easygui.msgbox("Thank you for ordering!")
+                easygui.msgbox(f"Thank you for ordering {first_name}!")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
 
         elif reply == choices[1]:
@@ -353,24 +370,24 @@ def display_main_menu():
             reply2 = ask_more_items()
             if reply2 == "Yes please! I would like to order more food.":
                 food_order_menu()
-                easygui.msgbox("Sorry, you cannot add items to your order more than twice due to other customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
             elif reply2 == "Yes please! I would like to order more drinks.":
                 drinks_order_menu()
-                easygui.msgbox("Sorry, you cannot add items to your order more than twice due to other customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
             else:
-                easygui.msgbox("Thank you for ordering!")
+                easygui.msgbox(f"Thank you for ordering {first_name}!")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
                 break
 
         elif reply == choices[2]:
-            sys.exit(easygui.msgbox(f"Sad to see you go! Come back soon {name}!"))
+            sys.exit(easygui.msgbox(f"Sad to see you go! Come back soon {first_name}!"))
             break
         else:
             sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
