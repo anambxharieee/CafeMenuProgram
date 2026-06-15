@@ -70,7 +70,7 @@ food_menu_items = {
     "   Chunky Chocolate Chip Cookie                                                      - $4.20"  :  4.20,
     "   Double Choc Muffin                                                                          - $3.90"  :  3.90,
     "   Yoghurt + Fresh Fruit Cup                                                                - $4.50"  :  4.50,
-    "   Rice Crackers                                                                                      - $2.20"   :  2.20,
+    "   Rice Crackers                                                                                       - $2.20"   :  2.20,
     "   Hot Wedges                                                                                        - $4.50"  :  4.50,
     "   Loaded Fries                                                                                        - $6.50" :  6.50,
     "   Hashbrown                                                                                          - $1.50"  : 1.50,
@@ -141,22 +141,23 @@ def invoice():
     for item in order.keys():
         order_list += f"{item}\n"
 
+
     order_invoice = ("===================================================================\n"
                      "                           Order Invoice                           \n"
                      "===================================================================\n"
-                     f"Name:                                               {name}\n"
-                     f"Occupation:                                  {specify}\n"
-                     f"Level:                                            {yr_lvl}\n"
-                     f"Email Address:                     {user_email}\n"
-                     f"Pick Up Time:                                  {time}\n"
+                     f"Name :                                       {name}\n"
+                     f"Occ. :                                       {specify}\n"
+                     f"Year :                                       {yr_lvl}\n"
+                     f"Email:                                       {user_email}\n"
+                     f"Time :                                       {time}\n"
                      "-------------------------------------------------------------------\n"
                      f"Order:\n{order_list}"
                      "-------------------------------------------------------------------\n"
-                     f"Subtotal Price:                  $ {calculate_subtotal_price():.2f}\n"
-                     f"GST (15%):                       $ {calculate_subtotal_price() * 0.15:.2f}\n"
-                     f"Total Price:                     $ {calculate_total_price():.2f}\n"
+                     f"Subtotal Price:                                         $ {calculate_subtotal_price():.2f}\n"
+                     f"GST (15%):                                   						     $ {calculate_subtotal_price() * 0.15:.2f}\n"
+                     f"Total Price:                                						      $ {calculate_total_price():.2f}\n"
                      )
-    easygui.codebox("Please see your Order Invoice below:", "Invoice Receipt", order_invoice)
+    easygui.msgbox(f"Please see your Order Invoice below:\n{order_invoice}", "Invoice Receipt")
 
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
@@ -171,7 +172,7 @@ reply = easygui.choicebox(proceed, title2, choices)    # using choicebox to ask 
 
 if reply == choices[0]:    # using indexing to determine which option user chose
     # If "Yes. Login into platform" is chosen:
-    easygui.msgbox("Okay. Lets continue on to the login page!")
+    easygui.msgbox("Okay. Lets continue onto the login page!")
 
 elif reply == choices[1]:
     # If "No. Exit out of platform." is chosen:
@@ -216,7 +217,7 @@ while True:
         easygui.msgbox("Invalid input. Please enter only letters for your name.")
 
 # Asking if user is student or teaching staff
-ask_occupation = "Before we continue further, are you a student or apart of teaching staff?\nPlease specify by choosing one of the options below."
+ask_occupation = "Before we continue further, are you a student or a part of teaching staff?\nPlease specify by choosing one of the options below."
 title6 = "Asking Occupation"
 occupation_choices = ["Student", "Teaching Staff"]
 specify = easygui.choicebox(ask_occupation, title6, occupation_choices)
@@ -257,7 +258,7 @@ elif specify == occupation_choices[1]:
         
         # If user's age is NOT within range
         else:
-            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the age range (21-70) requirements to be apart of teaching staff.\nIf you think this is a mistake please email: "))  # exceeds boundaries of year level range
+            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not meet the age requirements (21-70) for the teaching staff.\n\nIf you think this is a mistake please email:        cafe@bdsc.school.nz"))  # exceeds boundaries of year level range
 
     # Asking job role details using loop until valid selection
     while True:
@@ -294,10 +295,11 @@ while True:
     # If user closes or cancels the dialog box by accident:
     if user_email is None:
         sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
-
+    
     # If user had valid email     # makes sure email removes whitespace, all lowercase and uses correct, valid email domains
-    if user_email.strip().lower().endswith(ALLOWED_EMAIL_DOMAINS):
-        easygui.msgbox(f"Congratulations {first_name}! You have successfully verified your user identity.\nYour email {user_email} contains an approved domain.")
+    valid_user_email = user_email.lower().strip()
+    if valid_user_email.endswith(ALLOWED_EMAIL_DOMAINS):
+        easygui.msgbox(f"Congratulations {first_name}! You have successfully verified your user identity.\nYour email {valid_user_email} contains an approved domain.")
         break
     
     # If user writes invalid syntax in email
@@ -340,7 +342,7 @@ def display_main_menu():
     while True:
         main_menu = "Would you like to order from the cafe menu? If so, please specify which menu you would like to order from.\nFood or Drinks?"
         title3 = "Order Main Menu"
-        choices = ["Take me to the food menu!", "Take me to the drinks menu", "None, Exit me out of the platform!"]
+        choices = ["Take me to the food menu!", "Take me to the drinks menu!", "None, Exit me out of the platform!"]
         reply = easygui.choicebox(main_menu, title3, choices)    # using choicebox to ask user if they want to see the cafe menu or exit
 
         if reply == choices[0]:
@@ -387,7 +389,7 @@ def display_main_menu():
                 break
 
         elif reply == choices[2]:
-            sys.exit(easygui.msgbox(f"Sad to see you go! Come back soon {first_name}!"))
+            sys.exit(easygui.msgbox(f"Thank you for using BDSC Cafe Click and Collect! We hope you come back soon {first_name}!"))
             break
         else:
             sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
