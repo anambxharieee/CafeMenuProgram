@@ -9,7 +9,6 @@ organisation and efficiency.'''
 # Modules
 import easygui    # import easygui module so easygui functions can be used in program (e.g. easygui.msgbox(), easygui.enterbox(), etc.)
 import sys        # import sys module so sys functions can be used in program (e.g. sys.exit())
-import cafefoodmenu
 
 # Declaring constants
 YR_LVL = range(9, 14)    # students year level range
@@ -26,7 +25,58 @@ ALLOWED_EMAIL_DOMAINS = (      # email domains allowed in program
 )
 
 # Declaring global variables 
+# Global variable - food_menu_items
 # **Dictionary format is inconsistent due to formatting on easygui.multchoicebox() - no other option**
+food_menu_items = {
+    "Morning Tea                                                     " :  0,
+    "   Eggs Benedict Deluxe  + grain toast, hollandaise                         - $13.50"       : 13.50,
+    "   Omelette                                                                                            - $12.20"        : 12.20,
+    "   Scrambled Eggs + Grain Toast                                                        - $10.00"        : 10.00,
+    "   Poached Eggs + Grain Toast                                                           -  $9.90"        :  9.90,
+    "   French Toast + Butter + Maple                                                       -  $9.60"        :  9.60,
+    "     + berries, whipped cream                                                                      -  +$2.00" :  2.00,
+    "   Buttermilk Pancakes                                                                         - $13.50"        : 13.50,
+    "     + berries, choc ice cream                                                                      -  +$2.00" :  2.00,
+    "   Nutella Pancakes                                                                               - $12.80"        : 12.80,
+    "   Double Choc Pancakes                                                                     - $12.00"        : 12.00,
+    "   Cheesy Garlic Bread                                                                           -  $4.00"        :  4.00,
+    "   Cheese Toastie                                                                                   -  $3.90"        :  3.90,
+    "   Mushroom Toastie                                                                            -  $3.90"        :  3.90,
+    "   Smashed Avocado Toast                                                                  -  $3.90"        :  3.90,
+    "                                         "                                             :  0,
+    "Lunch                                    "                                             :  0,
+    "   Avocado + Chicken Burger                                                              - $10.20" : 10.20,
+    "   Vege Pea Protein Burger                                                                   -  $9.70" :  9.70,
+    "   English Muffin Cheese Melt                                                             -  $6.10" :  6.10,
+    "   Creamy Chicken Alfredo                                                                  - $13.60" : 13.60,
+    "   Meatballs Marinara                                                                            - $13.20" : 13.20,
+    "   Pesto Pasta                                                                                          - $12.90" : 12.90,
+    "     + GF pasta                                                                                                 -  +$1.30":  1.30,
+    "   Mac N' Cheese                                                                                    -  $9.90" :  9.90,
+    "   Chicken Nuggets + Fries Combo                                                     - $10.50" : 10.50,
+    "   Soy Bao Bun                                                                                        -  $4.50" :  4.50,
+    "   Chicken Bao Bun                                                                                -  $4.50" :  4.50,
+    "   Butter Chicken + Rice                                                                        - $11.20" : 11.20,
+    "   Lamb Dumplings                                                                                -  $9.50" :  9.50,
+    "   Wontons                                                                                              -  $8.50" :  8.50,
+    "   Grilled Chicken + Hummus                                                              - $11.50" : 11.50,
+    "   Tacos                                                                                                    -  $6.10" :  6.10,
+    "   Rice Paper Vege Rolls + Sweet Chilli                                                -  $8.50" :  8.50,
+    "                                         "                                             :  0,
+    "Snacks                                   "                                             :  0,
+    "   Salted Chips                                                                                        - $2.50" :  2.50,
+    "   Doritos                                                                                                 - $2.50" :  2.50,
+    "   Vege Chips                                                                                          - $2.50"  :  2.50,
+    "   Chunky Chocolate Chip Cookie                                                      - $4.20"  :  4.20,
+    "   Double Choc Muffin                                                                          - $3.90"  :  3.90,
+    "   Yoghurt + Fresh Fruit Cup                                                                - $4.50"  :  4.50,
+    "   Rice Crackers                                                                                      - $2.20"   :  2.20,
+    "   Hot Wedges                                                                                        - $4.50"  :  4.50,
+    "   Loaded Fries                                                                                        - $6.50" :  6.50,
+    "   Hashbrown                                                                                          - $1.50"  : 1.50,
+    "                                         "                                             :  0,
+}
+
 drinks_menu_items = {
     "Cold Drinks                       " :  0,
     "   Mango Smoothie                                                                                                  - $6.20" :  6.20,
@@ -62,8 +112,6 @@ order = {}     # empty dictionary to store user's order details
 def food_order_menu(): 
     food_message = "Please select your food order items."
     title4 = "BDSC School Cafe - All Day Food Menu"
-    with open("cafefoodmenu.py") as file:
-        return file.read()
     chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items.keys()))
     if chosen:
         for item in chosen:
