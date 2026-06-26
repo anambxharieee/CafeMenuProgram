@@ -28,6 +28,7 @@ ALLOWED_EMAIL_DOMAINS = (      # email domains allowed in program
 # Global variable - food_menu_items
 # **Dictionary format is inconsistent due to formatting on easygui.multchoicebox() - no other option**
 food_menu_items = {
+    "                                         "                                             :  0,
     "Morning Tea                                                     " :  0,
     "   Eggs Benedict Deluxe  + grain toast, hollandaise                         - $13.50"       : 13.50,
     "   Omelette                                                                                            - $12.20"        : 12.20,
@@ -63,6 +64,7 @@ food_menu_items = {
     "   Tacos                                                                                                    -  $6.10" :  6.10,
     "   Rice Paper Vege Rolls + Sweet Chilli                                                -  $8.50" :  8.50,
     "                                         "                                             :  0,
+    "                                         "                                             :  0,
     "Snacks                                   "                                             :  0,
     "   Salted Chips                                                                                        - $2.50" :  2.50,
     "   Doritos                                                                                                 - $2.50" :  2.50,
@@ -74,10 +76,10 @@ food_menu_items = {
     "   Hot Wedges                                                                                        - $4.50"  :  4.50,
     "   Loaded Fries                                                                                        - $6.50" :  6.50,
     "   Hashbrown                                                                                          - $1.50"  : 1.50,
-    "                                         "                                             :  0,
 }
 
 drinks_menu_items = {
+    "                                         "                                             :  0,
     "Cold Drinks                       " :  0,
     "   Mango Smoothie                                                                                                  - $6.20" :  6.20,
     "   Mixed Berry Smoothie                                                                                          - $6.20" :  6.20,
@@ -102,7 +104,7 @@ drinks_menu_items = {
     "     + deluxe (4 pumps molten choc)                                                                                -  +$1.50":  1.50,
     "     + standard (2 pumps molten choc)                                                                            -  +$0.50":  0.50,
     "   Tea                                                                                                                             - $3.30" :  3.30,
-    "                                             " :  0,
+    "                                         "                                             :  0
     }
 order = {}     # empty dictionary to store user's order details
 
@@ -154,10 +156,52 @@ def invoice():
                      f"Order:\n{order_list}"
                      "-------------------------------------------------------------------\n"
                      f"Subtotal Price:                                         $ {calculate_subtotal_price():.2f}\n"
-                     f"GST (15%):                                                                $ {calculate_subtotal_price() * 0.15:.2f}\n"
-                     f"Total Price:                                                           $ {calculate_total_price():.2f}\n"
+                     f"GST (15%):                                              $ {calculate_subtotal_price() * 0.15:.2f}\n"
+                     f"Total Price:                                            $ {calculate_total_price():.2f}\n"
                      )
     easygui.msgbox(f"Please see your Order Invoice below:\n{order_invoice}", "Invoice Receipt")
+
+
+def review_choice():
+    easygui.msgbox(f"Your order has been confirmed, {first_name}. Your patience is much appreciated.")
+
+    ask_review = "Would you like to leave a review?"
+    title_review = "Leave a Review"
+    review_choices = ["Yes!", "No!"]
+    review_reply = easygui.choicebox(ask_review, title_review, review_choices)
+
+    # If user closes or cancels the dialog box by accident
+    if review_reply is None:
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    
+    # If user chooses "Yes"
+    elif review_reply == review_choices[0]:
+        review_box()
+        sys.exit(easygui.msgbox(f"Goodbye {first_name}! Have a good day!"))
+    
+    # If user chooses "No"
+    else:
+        sys.exit(easygui.msgbox(f"Goodbye {first_name}! Have a good day!"))
+# Review Box Function
+def review_box():
+# Displaying instructions here so they stay visible at the top
+    instructions = (
+        "Please write your detailed review below.\n\n"
+        "Instructions:\n"
+        "1. Mention what you liked and disliked in your review.\n"
+        "2. Be as detailed as you like.\n"
+        "3. Don't forget to rate your experience in using the cafe program today out of 10!"
+    )
+
+    title = "Product Review Submission"
+
+    # Leaving the text area completely blank
+    user_review = easygui.textbox(msg=instructions, title=title, text="")
+
+    if user_review is None:
+        easygui.msgbox("User cancelled.")
+    else:
+        easygui.msgbox(f"Thank you for choosing to review and visit the BDSC Cafe Click and Collect!\nHave a great day {first_name}! Please see your submitted review attached below:\n\n{user_review}", "Review Received!")
 
 # Welcoming user
 welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
@@ -359,19 +403,18 @@ def display_main_menu():
                 food_order_menu()
                 easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
 
             elif reply2 == "Yes please! I would like to order more drinks.":
                 drinks_order_menu()
                 easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
             else:
-                easygui.msgbox(f"Thank you for ordering {first_name}!")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
 
         elif reply == choices[1]:
@@ -381,18 +424,17 @@ def display_main_menu():
                 food_order_menu()
                 easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
             elif reply2 == "Yes please! I would like to order more drinks.":
                 drinks_order_menu()
                 easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
             else:
-                easygui.msgbox(f"Thank you for ordering {first_name}!")
                 invoice()
-                easygui.msgbox(f"Thank you for your patience. Your order has been confirmed.\nHave a great day {first_name} and please come back soon to the BDSC Cafe Click and Collect Program!", "BDSC Cafe Click and Collect")
+                review_choice()
                 break
 
         elif reply == choices[2]:
@@ -401,5 +443,4 @@ def display_main_menu():
         else:
             sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
             break
-
 display_main_menu()
