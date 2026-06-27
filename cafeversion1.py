@@ -1,4 +1,4 @@
-'''This program is being made for the school cafe. 
+'''This text-based program is made for the school cafe. 
 The school cafe wants a menu-driven program for a 
 cafe order click and collect app to be created. 
 The program is meant to display a list of products 
@@ -15,6 +15,9 @@ AGE = range(13, 19)
 # This is the main menu of the cafe order click and collect app
 print("Welcome to the School Cafe Click and Collect!") # User welcome message
 login = input("Do you want to login? (yes/no): ")      # Login prompt (yes or no)
+if login.lower() == "no":
+    sys.exit(print("Thank you for visiting School Cafe Click and Collect! Come back soon!"))
+
 if login.lower() == "yes":
     while True:
         try:
@@ -108,21 +111,21 @@ if login.lower() == "yes":
           "  -> Tea                                           $3.30  \n"
           )
 
-order = []
+    order = []
 
-# Asking user for their order and if they want to order anything else
-items = input("What would you like to order today? ")
-order.append(items)
-anything_else = input("Would you like to order anything else? (yes/no): ")
+    # Asking user for their order and if they want to order anything else
+    items = input("What would you like to order today? ")
+    order.append(items)
+    anything_else = input("Would you like to order anything else? (yes/no): ")
 
-while True:         # while loop to allow user to order multiple producrts without having to restart the program
-    if anything_else.lower() == "yes":
-        items = input("What else would you like to order? ")
-        order.append(items)
-        anything_else = input("Would you like to order anything else? (yes/no): ")     # making sure user is finished ordering before breaking loop
-    else:
-        break           # breaks loop after user is finished ordering
+    while True:         # while loop to allow user to order multiple producrts without having to restart the program
+        if anything_else.lower() == "yes":
+            items = input("What else would you like to order? ")
+            order.append(items)
+            anything_else = input("Would you like to order anything else? (yes/no): ")     # making sure user is finished ordering before breaking loop
+        else:
+            break           # breaks loop after user is finished ordering
 
-# Displaying order summary + invoice details
-print("-----Order Summary-----")
-print(f"Customer Name: {user_name}\nAge: {age}\nYear Level: {yr_level}\nItems Ordered: {order}")
+    # Displaying order summary + invoice details
+    print("-----Order Summary-----")
+    print(f"Customer Name: {user_name}\nAge: {age}\nYear Level: {yr_level}\nItems Ordered: {order}")
