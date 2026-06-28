@@ -1,5 +1,5 @@
-'''This graphical user interface program is made for the school cafe.
-The school cafe wants a user-friendly menu-driven program for a cafe
+'''This graphical user interface program is made for the school café.
+The school café wants a user-friendly menu-driven program for a café
 order click and collect app to be created. The program is meant to
 display a list of products and prices, allow users to login and place
 orders and then provide an order invoice relevant details, all through
@@ -118,7 +118,7 @@ order = {}     # empty dictionary to store user's order details
 def food_order_menu():
     while True:   # repeats menu if user chooses a heading or blank field
         food_message = "Please select your food order items.\nThis is BDSC's Available All Day Menu so feel free to order anything you like."
-        title4 = "BDSC School Cafe - Available All Day Food Menu"
+        title4 = "BDSC School Café - All Day Food Menu"
         chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items.keys()))
 
         # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
@@ -150,8 +150,8 @@ def food_order_menu():
                 chosen_names.append(item.strip())
 
             # stops user from selecting menu headings
-            if "Morning Tea" in chosen_names or "Lunch" in chosen_names or "Snacks" in chosen_names or "" in chosen_names:
-                easygui.msgbox("Please do not select the default blank fields or the following heading labels:\n'Morning Tea', 'Lunch' or 'Snacks'")
+            if "Morning Tea" in chosen_names or "Lunch" in chosen_names or "Snacks" in chosen_names:
+                easygui.msgbox("Please do not select the following heading labels:\n'Morning Tea', 'Lunch' or 'Snacks'")
                 continue   # shows the menu again
             
             elif frenchaddon in chosen and frenchtoast not in chosen:
@@ -195,13 +195,13 @@ def food_order_menu():
 def drinks_order_menu():
     while True:        # repeats menu if user chooses a heading or blank field
         drinks_message = "Please select your drinks order items."
-        title8 = "BDSC School Cafe - All Day Food Menu"
+        title8 = "BDSC School Café - All Day Drinks Menu"
         chosen = easygui.multchoicebox(drinks_message, title8, list(drinks_menu_items.keys()))
         
         # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
         deluxeaddon = "     + deluxe (+4 pumps molten choc)                                                                               -  +$1.50"
         standardaddon = "     + standard (+2 pumps molten choc)                                                                           -  +$0.50"
-        hotchocolate = "   Hot Chocolate                                                                                                           - $4.70"
+        hotchocolate = "   Hot Chocolate                                                                                                         - $4.70"
 
         if chosen:
             chosen_names = []           # stores selected items without extra spaces
@@ -209,8 +209,8 @@ def drinks_order_menu():
                 chosen_names.append(item.strip())
 
             # stops user from selecting drink headings
-            if "Cold Drinks" in chosen_names or "Hot Drinks" in chosen_names or "" in chosen_names:
-                easygui.msgbox("Please do not select the default blank fields or the following heading labels:\n'Hot Drinks' or 'Cold Drinks'")
+            if "Cold Drinks" in chosen_names or "Hot Drinks" in chosen_names:
+                easygui.msgbox("Please do not select the followifng heading labels:\n'Hot Drinks' or 'Cold Drinks'")
                 continue        # shows the menu again
             
             elif deluxeaddon in chosen and hotchocolate not in chosen:
@@ -270,16 +270,16 @@ def review_choice():
 
     # If user closes or cancels the dialog box by accident
     if review_reply is None:
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
     
     # If user chooses "Yes"
     elif review_reply == review_choices[0]:
         review_box()
-        sys.exit(easygui.msgbox(f"Goodbye {first_name}! Have a good day!"))
+        sys.exit(easygui.msgbox(f"Goodbye {first_name}!"))
     
     # If user chooses "No"
     else:
-        sys.exit(easygui.msgbox(f"Goodbye {first_name}! Have a good day!"))
+        sys.exit(easygui.msgbox(f"Goodbye {first_name}!"))
 # Review Box Function
 def review_box():
 # Displaying instructions here so they stay visible at the top
@@ -288,26 +288,26 @@ def review_box():
         "Instructions:\n"
         "1. Mention what you liked and disliked in your review.\n"
         "2. Be as detailed as you like.\n"
-        "3. Don't forget to rate your experience in using the cafe program today out of 10!"
+        "3. Don't forget to rate your experience in using the café program today out of 10!"
     )
 
     title = "Product Review Submission"
 
     # Pre-fill the textbox with a sentence starter for the review
-    user_review = easygui.textbox(msg=instructions, title=title, text="Dear Cafe Staff,\n\n")
+    user_review = easygui.textbox(msg=instructions, title=title, text="Dear Café Staff,\n\n")
 
     if user_review is None:
-        easygui.msgbox("User cancelled.")
+        easygui.msgbox("User cancelled or closed dialog box, meaning your review was not saved.\n\nIf you have any questions or concerns with regards to your order or experience with the BDSC Café Click and Collect Program please email:\ncafe@bdsc.school.nz")
     else:
-        easygui.msgbox(f"Thank you for choosing to review and visit the BDSC Cafe Click and Collect!\nHave a great day {first_name}! Please see your submitted review attached below:\n\n{user_review}", "Review Received!")
+        easygui.msgbox(f"Thank you for choosing to review and visit the BDSC Café Click and Collect!\nPlease see your submitted review attached below:\n\n{user_review}", "Review Received!")
 
 # Welcoming user
-welcome = "Welcome to BDSC School Cafe Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
+welcome = "Welcome to BDSC School Café Click and Collect!"   # informs user of the name of the app and warmly welcomes the user to it.
 title1 = "Welcome Page"
 easygui.msgbox(welcome, title1) # printing welcome messagebox to user
 
 # Asking if user wishes to proceed
-proceed = "BDSC School Cafe Click and Collect will need you to enter some of your details.\nDo you wish to continue?"
+proceed = "BDSC School Café Click and Collect will need you to enter some of your details.\nDo you wish to continue?"
 title2 = "Permission to Ask User Details"
 choices = ["Yes. Login into platform", "No. Exit out of platform."]
 reply = easygui.choicebox(proceed, title2, choices)    # using choicebox to ask user which option they want to choose (login or exit)
@@ -318,11 +318,11 @@ if reply == choices[0]:    # using indexing to determine which option user chose
 
 elif reply == choices[1]:
     # If "No. Exit out of platform." is chosen:
-    sys.exit(easygui.msgbox("Goodbye! Come back soon to use BDSC School Cafe Click and Collect!"))
+    sys.exit(easygui.msgbox("Goodbye! Come back soon to use BDSC School Café Click and Collect!"))
 
 else:
     # If user closes or cancels the dialog box by accident:
-    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
 
 # Asking user details
 # Asking first name details
@@ -331,7 +331,7 @@ while True:
     
     # If user closes or cancels the dialog box by accident
     if first_name is None:      # None means nothing was entered
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
     
     # If user enters valid first name
     elif first_name.replace("-", "").isalpha():   # .isalpha() to check if name only contains letters
@@ -349,7 +349,7 @@ while True:
    
     # If user closes or cancels the dialog box by accident
     if last_name is None:      # None means nothing was entered
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
     
     # If user enters valid last name
     elif last_name.replace("-", "").replace(" ", "").isalpha():    # isalpha() to check if name only contains letters
@@ -378,18 +378,18 @@ if specify == occupation_choices[0]:
        
         # If user closes or cancels the dialog box by accident
         if yr_lvl is None:      # None means nothing was entered
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
 
         # If user's year level is within range
         elif yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
             year_age = yr_lvl   # store student year for invoice
             year_age_label = "Year"  # show "Year" on invoice for students
-            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
+            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Café Click and Collect is approved!")   # confirming user's year level
             break   # breaks loop if a valid year level is entered
 
         # If user's year level is NOT within range
         else:
-            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements."))  # exceeds boundaries of year level range
+            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Café Click and Collect.\nSadly, you do not fit the year level range (9-13) requirements.\n\nIf you think this is a mistake please email:        cafe@bdsc.school.nz"))  # exceeds boundaries of year level range
 
 # Teaching Staff - Occupation
 elif specify == occupation_choices[1]:
@@ -399,7 +399,7 @@ elif specify == occupation_choices[1]:
 
         # If user closes or cancels the dialog box by accident
         if age is None:       # None means nothing was entered
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
        
         # If user's age is within range
         elif age in AGE:
@@ -411,7 +411,7 @@ elif specify == occupation_choices[1]:
        
         # If user's age is NOT within range
         else:
-            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Cafe Click and Collect.\nSadly, you do not meet the age requirements (21-70) for the teaching staff.\n\nIf you think this is a mistake please email:        cafe@bdsc.school.nz"))  # exceeds boundaries of year level range
+            sys.exit(easygui.msgbox(f"Sorry {first_name}, you are not eligible to use the BDSC Café Click and Collect.\nSadly, you do not meet the age requirements (21-70) for the teaching staff.\n\nIf you think this is a mistake please email:        cafe@bdsc.school.nz"))  # exceeds boundaries of year level range
 
     # Asking job role details using loop until valid selection
     while True:
@@ -423,7 +423,7 @@ elif specify == occupation_choices[1]:
        
         # If user closes or cancels the dialog box by accident
         if job is None:         # None means nothing was entered
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
        
         # If user selected the blank option, meaning no valid role chosen
         elif job == "":
@@ -431,12 +431,12 @@ elif specify == occupation_choices[1]:
        
         # If user selected a valid job role, approve their access
         else:
-            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Cafe Click and Collect is approved!")
+            easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Café Click and Collect is approved!")
             break
        
 # If user closes or cancels the dialog box by accident:
 else:
-    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+    sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
 
 while True:
     email_prompt = f"Please enter your email address, {first_name}, so we can notify you when your order is ready or if any problems occur:"
@@ -446,7 +446,7 @@ while True:
 
     # If user closes or cancels the dialog box by accident:
     if user_email is None:
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
    
     # If user had valid email     # makes sure email removes whitespace, all lowercase and uses correct, valid email domains
     valid_user_email = user_email.lower().strip()
@@ -467,7 +467,7 @@ while True:
 
     # If user closes or cancels the dialog box by accident:
     if time is None:
-        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+        sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
 
     # If user selected the blank option, meaning no valid time for order pick up was chosen
     elif time == "":
@@ -483,19 +483,19 @@ def display_main_menu():
     order.clear()
 
     def ask_more_items():
-        asking_again = "Would you like to order more from the BDSC Cafe Click and Collect?"
+        asking_again = "Would you like to order more from the BDSC Café Click and Collect?"
         title9 = "Order Main Menu"
         asking_choices_again = ["Yes please! I would like to order more food.", "Yes please! I would like to order more drinks.", "No thanks!"]
         reply2 = easygui.choicebox(asking_again, title9, asking_choices_again)
         if reply2 is None:
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
         return reply2
 
     while True:
-        main_menu = "Would you like to order from the cafe menu? If so, please specify which menu you would like to order from.\nFood or Drinks?"
+        main_menu = "Would you like to order from the café menu? If so, please specify which menu you would like to order from.\nFood or Drinks?"
         title3 = "Order Main Menu"
         choices = ["Take me to the food menu!", "Take me to the drinks menu!", "None, Exit me out of the platform!"]
-        reply = easygui.choicebox(main_menu, title3, choices)    # using choicebox to ask user if they want to see the cafe menu or exit
+        reply = easygui.choicebox(main_menu, title3, choices)    # using choicebox to ask user if they want to see the café menu or exit
 
         if reply == choices[0]:
             food_order_menu()
@@ -503,14 +503,14 @@ def display_main_menu():
             
             if reply2 == "Yes please! I would like to order more food.":
                 food_order_menu()
-                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Your order is proccessing and forwarding to our café staff at the moment! Please continue on to the next page to view your invoice.\n\nNOTE: You cannot add more items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\n\nIf you have any questions or concerns with regards to your order or experience with the BDSC Café Click and Collect Program please email:\ncafe@bdsc.school.nz")
                 invoice()
                 review_choice()
                 break
 
             elif reply2 == "Yes please! I would like to order more drinks.":
                 drinks_order_menu()
-                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Your order is proccessing and forwarding to our café staff at the moment! Please continue on to the next page to view your invoice.\n\nNOTE: You cannot add more items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\n\nIf you have any questions or concerns with regards to your order or experience with the BDSC Café Click and Collect Program please email:\ncafe@bdsc.school.nz")
                 invoice()
                 review_choice()
                 break
@@ -524,7 +524,7 @@ def display_main_menu():
             reply2 = ask_more_items()
             if reply2 == "Yes please! I would like to order more food.":
                 food_order_menu()
-                easygui.msgbox(f"Sorry {first_name}, you cannot add items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\nPlease continue on to the next page to view your invoice.")
+                easygui.msgbox(f"Your order is proccessing and forwarding to our café staff at the moment! Please continue on to the next page to view your invoice.\n\nNOTE: You cannot add more items to your order more than twice due to other incoming customer orders.\nTo place more orders, exit application and login again.\n\nIf you have any questions or concerns with regards to your order or experience with the BDSC Café Click and Collect Program please email:\ncafe@bdsc.school.nz")
                 invoice()
                 review_choice()
                 break
@@ -540,9 +540,9 @@ def display_main_menu():
                 break
 
         elif reply == choices[2]:
-            sys.exit(easygui.msgbox(f"Thank you for using BDSC Cafe Click and Collect! We hope you come back soon {first_name}!"))
+            sys.exit(easygui.msgbox(f"Thank you for using BDSC Café Click and Collect! We hope you come back soon {first_name}!"))
             break
         else:
-            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
+            sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Café Click and Collect platform."))
             break
 display_main_menu()
