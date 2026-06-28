@@ -25,35 +25,40 @@ ALLOWED_EMAIL_DOMAINS = (      # email domains allowed in program
 )
 
 # Declaring global variables
-# Global variable - food_menu_items
+# Global variable - food_menu_items, drinks_menu_items
 # **Dictionary format is inconsistent due to formatting on easygui.multchoicebox() - no other option**
 food_menu_items = {
-    "                                         "                                             :  0,
-    "Morning Tea                                                     " :  0,
-    "   Eggs Benedict Deluxe  + grain toast, hollandaise                         - $13.50"       : 13.50,
+    ""                                             :  0,
+    "Morning Tea" :  0,
+    "   Eggs Benedict Deluxe  ~ grain toast, hollandaise                         - $13.50"       : 13.50,
     "   Omelette                                                                                            - $12.20"        : 12.20,
     "   Scrambled Eggs + Grain Toast                                                        - $10.00"        : 10.00,
     "   Poached Eggs + Grain Toast                                                           -  $9.90"        :  9.90,
     "   French Toast + Butter + Maple                                                       -  $9.60"        :  9.60,
-    "     + berries, whipped cream                                                                      -  +$2.00" :  2.00,
+    "     + mixed berries, whipped cream                                                                 -  +$2.00" :  2.00,
     "   Buttermilk Pancakes                                                                         - $13.50"        : 13.50,
-    "     + berries, choc ice cream                                                                      -  +$2.00" :  2.00,
+    "     + strawberries, choc mousse                                                                    -  +$2.00" :  2.00,
     "   Nutella Pancakes                                                                               - $12.80"        : 12.80,
+    "     + mixed berries, neapolitan ice cream                                                          -  +$2.00" :  2.00,
     "   Double Choc Pancakes                                                                     - $12.00"        : 12.00,
+    "     + blueberries + banana, vanilla ice cream                                                      -  +$2.00" :  2.00,
     "   Cheesy Garlic Bread                                                                           -  $4.00"        :  4.00,
     "   Cheese Toastie                                                                                   -  $3.90"        :  3.90,
     "   Mushroom Toastie                                                                            -  $3.90"        :  3.90,
     "   Smashed Avocado Toast                                                                  -  $3.90"        :  3.90,
-    "                                         "                                             :  0,
-    "Lunch                                    "                                             :  0,
+    " "                                             :  0,
+    "Lunch" :  0,
     "   Avocado + Chicken Burger                                                              - $10.20" : 10.20,
     "   Vege Pea Protein Burger                                                                   -  $9.70" :  9.70,
     "   English Muffin Cheese Melt                                                             -  $6.10" :  6.10,
     "   Creamy Chicken Alfredo                                                                  - $13.60" : 13.60,
+    "     + GF pasta (penne)                                                                                         -  +$1.30":  1.30,
     "   Meatballs Marinara                                                                            - $13.20" : 13.20,
+    "     + GF pasta (fettuccine)                                                                                    -  +$1.30":  1.30,
     "   Pesto Pasta                                                                                          - $12.90" : 12.90,
-    "     + GF pasta                                                                                                 -  +$1.30":  1.30,
+    "     + GF pasta (linguini)                                                                                      -  +$1.30":  1.30,
     "   Mac N' Cheese                                                                                    -  $9.90" :  9.90,
+    "     + GF pasta (macaroni)                                                                                      -  +$1.30":  1.30,
     "   Chicken Nuggets + Fries Combo                                                     - $10.50" : 10.50,
     "   Soy Bao Bun                                                                                        -  $4.50" :  4.50,
     "   Chicken Bao Bun                                                                                -  $4.50" :  4.50,
@@ -63,9 +68,8 @@ food_menu_items = {
     "   Grilled Chicken + Hummus                                                              - $11.50" : 11.50,
     "   Tacos                                                                                                    -  $6.10" :  6.10,
     "   Rice Paper Vege Rolls + Sweet Chilli                                                -  $8.50" :  8.50,
-    "                                         "                                             :  0,
-    "                                         "                                             :  0,
-    "Snacks                                   "                                             :  0,
+    "  "                                             :  0,
+    "Snacks" :  0,
     "   Salted Chips                                                                                        - $2.50" :  2.50,
     "   Doritos                                                                                                 - $2.50" :  2.50,
     "   Vege Chips                                                                                          - $2.50"  :  2.50,
@@ -101,8 +105,8 @@ drinks_menu_items = {
     "   Americano                                                                                                                - $6.80" :  6.80,
     "   Mocha                                                                                                                       - $6.40" :  6.40,
     "   Hot Chocolate                                                                                                          - $4.70" :  4.70,
-    "     + deluxe (4 pumps molten choc)                                                                                -  +$1.50":  1.50,
-    "     + standard (2 pumps molten choc)                                                                            -  +$0.50":  0.50,
+    "     + deluxe (+4 pumps molten choc)                                                                               -  +$1.50":  1.50,
+    "     + standard (+2 pumps molten choc)                                                                           -  +$0.50":  0.50,
     "   Tea                                                                                                                             - $3.30" :  3.30,
     "                                         "                                             :  0
     }
@@ -112,21 +116,87 @@ order = {}     # empty dictionary to store user's order details
 # Menu Function
 # Food Menu Function
 def food_order_menu():
-    food_message = "Please select your food order items."
-    title4 = "BDSC School Cafe - All Day Food Menu"
-    chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items.keys()))
-    if chosen:
-        for item in chosen:
-            order[item] = food_menu_items[item]
+    while True:   # repeats menu if user chooses a heading or blank field
+        food_message = "Please select your food order items.\nThis is BDSC's Available All Day Menu so feel free to order anything you like."
+        title4 = "BDSC School Cafe - Available All Day Food Menu"
+        chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items.keys()))
+
+        # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
+        frenchaddon = "     + berries, whipped cream                                                                      -  +$2.00"
+        frenchtoast = "   French Toast + Butter + Maple                                                       -  $9.60"
+        
+        pancakesaddon = "     + berries, choc ice cream                                                                      -  +$2.00"
+        buttermilk = "   Buttermilk Pancakes                                                                         - $13.50"
+        nutella = "   Nutella Pancakes                                                                               - $12.80"
+        doublechoc = "   Double Choc Pancakes                                                                     - $12.00"
+        
+        gf_pasta = "     + GF pasta                                                                                                 -  +$1.30"
+        alfredo = "   Creamy Chicken Alfredo                                                                  - $13.60"
+        marinara = "   Meatballs Marinara                                                                            - $13.20"
+        pesto = "   Pesto Pasta                                                                                          - $12.90"
+        macncheese = "   Mac N' Cheese                                                                                    -  $9.90"
+
+        if chosen:
+            chosen_names = []   # stores selected items without extra spaces
+            for item in chosen:
+                chosen_names.append(item.strip())
+
+            # stops user from selecting menu headings
+            if "Morning Tea" in chosen_names or "Lunch" in chosen_names or "Snacks" in chosen_names or "" in chosen_names:
+                easygui.msgbox("Please do not select the default blank fields or the following heading labels:\n'Morning Tea', 'Lunch' or 'Snacks'")
+                continue   # shows the menu again
+
+            elif frenchaddon in chosen and frenchtoast not in chosen:
+                easygui.msgbox("Please select the French Toast with butter and maple syrup if you want to add on berries and whipped cream.")
+                continue   # shows the menu again
+
+            elif pancakesaddon in chosen and buttermilk not in chosen and nutella not in chosen and doublechoc not in chosen:
+                easygui.msgbox("Please select a Pancakes menu item if you want berries and choc ice cream. The following pancakes you can choose from is:\nButtermilk Pancakes, Nutella Pancakes and Double Choc Pancakes")
+                continue   # shows the menu again
+
+            elif gf_pasta in chosen and alfredo not in chosen and marinara not in chosen and pesto not in chosen and macncheese not in chosen:
+                easygui.msgbox("Please select a Pasta menu item if you want Gluten Free (GF) pasta. The following pastas you can choose from is:\nCreamy Chicken Alfredo, Meatballs Marinara, Pesto and Mac N' Cheese.")
+                continue   # shows the menu again
+
+            # adds valid selected items to the order
+            for item in chosen:
+                order[item] = food_menu_items[item]
+        break
 
 # Drinks Menu Function
 def drinks_order_menu():
-    drinks_message = "Please select your drinks order items."
-    title8 = "BDSC School Cafe - All Day Food Menu"
-    chosen = easygui.multchoicebox(drinks_message, title8, list(drinks_menu_items.keys()))
-    if chosen:
-        for item in chosen:
-            order[item] = drinks_menu_items[item]
+    while True:        # repeats menu if user chooses a heading or blank field
+        drinks_message = "Please select your drinks order items."
+        title8 = "BDSC School Cafe - All Day Food Menu"
+        chosen = easygui.multchoicebox(drinks_message, title8, list(drinks_menu_items.keys()))
+        
+        # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
+        deluxeaddon = "     + deluxe (+4 pumps molten choc)                                                                               -  +$1.50"
+        standardaddon = "     + standard (+2 pumps molten choc)                                                                           -  +$0.50"
+        hotchocolate = "   Hot Chocolate                                                                                                          - $4.70"
+
+        if chosen:
+            chosen_names = []           # stores selected items without extra spaces
+            for item in chosen:
+                chosen_names.append(item.strip())
+
+            # stops user from selecting drink headings
+            if "Cold Drinks" in chosen_names or "Hot Drinks" in chosen_names or "" in chosen_names:
+                easygui.msgbox("Please do not select the default blank fields or the following heading labels:\n'Hot Drinks' or 'Cold Drinks'")
+                continue        # shows the menu again
+            
+            elif deluxeaddon in chosen and hotchocolate not in chosen:
+                easygui.msgbox("Please select Hot Chocolate if you want deluxe with 4 pumps of molten chocolate as an extra add on.\n\nNOTE: As a reminder, for clarification, you are adding extra chocolate to your drink that already contains a chocolate base.")
+                continue   # shows the menu again
+
+            elif standardaddon in chosen and hotchocolate not in chosen:
+                easygui.msgbox("Please select Hot Chocolate if you want standard with 2 pumps of molten chocolate as an extra add on.\n\nNOTE: As a reminder, for clarification, you are adding extra chocolate to your drink that already contains a chocolate base.")
+                continue   # shows the menu again
+
+            # adds valid selected items to the order
+            for item in chosen:
+                order[item] = drinks_menu_items[item]
+        break
 
 # Order Invoice Function
 def invoice():
@@ -144,17 +214,17 @@ def invoice():
         order_list += f"{item}\n"
 
 
-    order_invoice = ("===================================================================\n"
-                     "                           Order Invoice                           \n"
-                     "===================================================================\n"
+    order_invoice = ("===============================================================================\n"
+                     "                                 Order Invoice                                 \n"
+                     "===============================================================================\n"
                      f"Name :                                       {name}\n"
                      f"Occ. :                                       {specify}\n"
-                     f"Year :                                       {yr_lvl}\n"
+                     f"{year_age_label} :                                       {year_age}\n"
                      f"Email:                                       {user_email}\n"
                      f"Time :                                       {time}\n"
-                     "-------------------------------------------------------------------\n"
+                     "-------------------------------------------------------------------------------\n"
                      f"Order:\n{order_list}"
-                     "-------------------------------------------------------------------\n"
+                     "-------------------------------------------------------------------------------\n"
                      f"Subtotal Price:                                         $ {calculate_subtotal_price():.2f}\n"
                      f"GST (15%):                                              $ {calculate_subtotal_price() * 0.15:.2f}\n"
                      f"Total Price:                                            $ {calculate_total_price():.2f}\n"
@@ -195,8 +265,8 @@ def review_box():
 
     title = "Product Review Submission"
 
-    # Leaving the text area completely blank
-    user_review = easygui.textbox(msg=instructions, title=title, text="")
+    # Pre-fill the textbox with a sentence starter for the review
+    user_review = easygui.textbox(msg=instructions, title=title, text="Dear Cafe Staff,\n\n")
 
     if user_review is None:
         easygui.msgbox("User cancelled.")
@@ -269,7 +339,7 @@ while True:
 # Asking if user is student or teaching staff
 ask_occupation = "Before we continue further, are you a student or a part of teaching staff?\nPlease specify by choosing one of the options below."
 title6 = "Asking Occupation"
-occupation_choices = ["Student", "Teaching Staff"]
+occupation_choices = ["Student", "BDSC School Staff"]
 specify = easygui.choicebox(ask_occupation, title6, occupation_choices)
 
 # Student - Occupation
@@ -284,6 +354,8 @@ if specify == occupation_choices[0]:
 
         # If user's year level is within range
         elif yr_lvl in YR_LVL:   # using 'in' to check if year level is within the range of 9-13
+            year_age = yr_lvl   # store student year for invoice
+            year_age_label = "Year"  # show "Year" on invoice for students
             easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Cafe Click and Collect is approved!")   # confirming user's year level
             break   # breaks loop if a valid year level is entered
 
@@ -296,13 +368,16 @@ elif specify == occupation_choices[1]:
     # Asking age details using while loop
     while True:
         age = easygui.integerbox("Enter your age: ")   # using integerbox so integers are only allowed, increased validity
-       
+
         # If user closes or cancels the dialog box by accident
         if age is None:       # None means nothing was entered
             sys.exit(easygui.msgbox("Oh no! You cancelled or closed the dialog box.\nPlease restart BDSC School Cafe Click and Collect platform."))
        
         # If user's age is within range
         elif age in AGE:
+            year_age = age   # store staff age for invoice
+            year_age_label = "Age."  # show "Age" on invoice for staff
+
             easygui.msgbox(f"Age is within the range. Please continue on to the next part.")
             break   # exits loop once valid age is confirmed
        
@@ -329,7 +404,6 @@ elif specify == occupation_choices[1]:
         # If user selected a valid job role, approve their access
         else:
             easygui.msgbox(f"Thank you {name} for entering your user details and specifying your current occupation. Your request in using the BDSC School Cafe Click and Collect is approved!")
-            yr_lvl = "Teaching Staff"  # Set yr_lvl for teaching staff for invoice purposes (no other way)
             break
        
 # If user closes or cancels the dialog box by accident:
