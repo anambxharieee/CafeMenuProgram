@@ -35,30 +35,30 @@ food_menu_items = {
     "   Scrambled Eggs + Grain Toast                                                        - $10.00"        : 10.00,
     "   Poached Eggs + Grain Toast                                                           -  $9.90"        :  9.90,
     "   French Toast + Butter + Maple                                                       -  $9.60"        :  9.60,
-    "     + mixed berries, whipped cream                                                                 -  +$2.00" :  2.00,
+    "     + mixed berries, whipped cream                                                                   -  +$2.00" :  2.00,
     "   Buttermilk Pancakes                                                                         - $13.50"        : 13.50,
-    "     + strawberries, choc mousse                                                                    -  +$2.00" :  2.00,
+    "     + strawberries, choc mousse                                                                          -  +$2.00" :  2.00,
     "   Nutella Pancakes                                                                               - $12.80"        : 12.80,
     "     + mixed berries, neapolitan ice cream                                                          -  +$2.00" :  2.00,
     "   Double Choc Pancakes                                                                     - $12.00"        : 12.00,
-    "     + blueberries + banana, vanilla ice cream                                                      -  +$2.00" :  2.00,
+    "     + blueberries + banana, vanilla ice cream                                                    -  +$2.00" :  2.00,
     "   Cheesy Garlic Bread                                                                           -  $4.00"        :  4.00,
     "   Cheese Toastie                                                                                   -  $3.90"        :  3.90,
     "   Mushroom Toastie                                                                            -  $3.90"        :  3.90,
     "   Smashed Avocado Toast                                                                  -  $3.90"        :  3.90,
-    " "                                             :  0,
+    "   "                                             :  0,
     "Lunch" :  0,
     "   Avocado + Chicken Burger                                                              - $10.20" : 10.20,
     "   Vege Pea Protein Burger                                                                   -  $9.70" :  9.70,
     "   English Muffin Cheese Melt                                                             -  $6.10" :  6.10,
     "   Creamy Chicken Alfredo                                                                  - $13.60" : 13.60,
-    "     + GF pasta (penne)                                                                                         -  +$1.30":  1.30,
+    "     + GF pasta (penne)                                                                                          -  +$1.30":  1.30,
     "   Meatballs Marinara                                                                            - $13.20" : 13.20,
-    "     + GF pasta (fettuccine)                                                                                    -  +$1.30":  1.30,
+    "     + GF pasta (fettuccine)                                                                                   -  +$1.30":  1.30,
     "   Pesto Pasta                                                                                          - $12.90" : 12.90,
-    "     + GF pasta (linguini)                                                                                      -  +$1.30":  1.30,
+    "     + GF pasta (linguini)                                                                                       -  +$1.30":  1.30,
     "   Mac N' Cheese                                                                                    -  $9.90" :  9.90,
-    "     + GF pasta (macaroni)                                                                                      -  +$1.30":  1.30,
+    "     + GF pasta (macaroni)                                                                                    -  +$1.30":  1.30,
     "   Chicken Nuggets + Fries Combo                                                     - $10.50" : 10.50,
     "   Soy Bao Bun                                                                                        -  $4.50" :  4.50,
     "   Chicken Bao Bun                                                                                -  $4.50" :  4.50,
@@ -85,29 +85,29 @@ food_menu_items = {
 drinks_menu_items = {
     "                                         "                                             :  0,
     "Cold Drinks                       " :  0,
-    "   Mango Smoothie                                                                                                  - $6.20" :  6.20,
-    "   Mixed Berry Smoothie                                                                                          - $6.20" :  6.20,
-    "   Lime Tropical Smoothie                                                                                       - $6.20" :  6.20,
-    "   Apple Juice                                                                                                             - $3.60" :  3.60,
-    "   Orange Juice                                                                                                          - $3.60" :  3.60,
-    "   Mango + Orange Juice                                                                                         - $3.60" :  3.60,
-    "   Tropical Juice                                                                                                         - $3.60" :  3.60,
-    "   Aloe Vera                                                                                                                - $4.20" :  4.20,
-    "   Iced Coffee                                                                                                             - $5.50" :  5.50,
-    "   Iced Chocolate                                                                                                       - $4.90" :  4.90,
+    "   Mango Smoothie                                                                                                 - $6.20" :  6.20,
+    "   Mixed Berry Smoothie                                                                                         - $6.20" :  6.20,
+    "   Lime Tropical Smoothie                                                                                      - $6.20" :  6.20,
+    "   Apple Juice                                                                                                            - $3.60" :  3.60,
+    "   Orange Juice                                                                                                         - $3.60" :  3.60,
+    "   Mango + Orange Juice                                                                                        - $3.60" :  3.60,
+    "   Tropical Juice                                                                                                        - $3.60" :  3.60,
+    "   Aloe Vera                                                                                                               - $4.20" :  4.20,
+    "   Iced Coffee                                                                                                            - $5.50" :  5.50,
+    "   Iced Chocolate                                                                                                      - $4.90" :  4.90,
     "                                  " :  0,
     "Hot Drinks                        " :  0,
-    "   Chai Latte                                                                                                                 - $5.20" :  5.20,
-    "   Matcha Latte                                                                                                            - $6.10" :  6.10,
-    "   Cappuccino                                                                                                              - $7.20" :  7.20,
-    "   Espresso                                                                                                                    - $7.50" :  7.50,
-    "   Flat White                                                                                                                  - $6.30" :  6.30,
-    "   Americano                                                                                                                - $6.80" :  6.80,
-    "   Mocha                                                                                                                       - $6.40" :  6.40,
-    "   Hot Chocolate                                                                                                          - $4.70" :  4.70,
+    "   Chai Latte                                                                                                                - $5.20" :  5.20,
+    "   Matcha Latte                                                                                                           - $6.10" :  6.10,
+    "   Cappuccino                                                                                                             - $7.20" :  7.20,
+    "   Espresso                                                                                                                   - $7.50" :  7.50,
+    "   Flat White                                                                                                                 - $6.30" :  6.30,
+    "   Americano                                                                                                               - $6.80" :  6.80,
+    "   Mocha                                                                                                                      - $6.40" :  6.40,
+    "   Hot Chocolate                                                                                                         - $4.70" :  4.70,
     "     + deluxe (+4 pumps molten choc)                                                                               -  +$1.50":  1.50,
     "     + standard (+2 pumps molten choc)                                                                           -  +$0.50":  0.50,
-    "   Tea                                                                                                                             - $3.30" :  3.30,
+    "   Tea                                                                                                                            - $3.30" :  3.30,
     "                                         "                                             :  0
     }
 order = {}     # empty dictionary to store user's order details
@@ -122,18 +122,26 @@ def food_order_menu():
         chosen = easygui.multchoicebox(food_message, title4, list(food_menu_items.keys()))
 
         # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
-        frenchaddon = "     + berries, whipped cream                                                                      -  +$2.00"
+        # Assigning variables to french toast and its addons
+        frenchaddon = "     + mixed berries, whipped cream                                                                   -  +$2.00"
         frenchtoast = "   French Toast + Butter + Maple                                                       -  $9.60"
-        
-        pancakesaddon = "     + berries, choc ice cream                                                                      -  +$2.00"
+
+        # Assigning variables to the different pancake options and its addons
+        buttermilkaddon = "     + strawberries, choc mousse                                                                          -  +$2.00"
         buttermilk = "   Buttermilk Pancakes                                                                         - $13.50"
+        nutellaaddon = "     + mixed berries, neapolitan ice cream                                                          -  +$2.00"
         nutella = "   Nutella Pancakes                                                                               - $12.80"
+        doublechocaddon = "     + blueberries + banana, vanilla ice cream                                                    -  +$2.00"
         doublechoc = "   Double Choc Pancakes                                                                     - $12.00"
-        
-        gf_pasta = "     + GF pasta                                                                                                 -  +$1.30"
+
+        # Assigning variables to the different pasta options and its addons
+        alfredoaddon = "     + GF pasta (penne)                                                                                          -  +$1.30"
         alfredo = "   Creamy Chicken Alfredo                                                                  - $13.60"
+        marinaraaddon = "     + GF pasta (fettuccine)                                                                                   -  +$1.30"
         marinara = "   Meatballs Marinara                                                                            - $13.20"
+        pestoaddon = "     + GF pasta (linguini)                                                                                       -  +$1.30"
         pesto = "   Pesto Pasta                                                                                          - $12.90"
+        macaddon = "     + GF pasta (macaroni)                                                                                    -  +$1.30"
         macncheese = "   Mac N' Cheese                                                                                    -  $9.90"
 
         if chosen:
@@ -145,17 +153,37 @@ def food_order_menu():
             if "Morning Tea" in chosen_names or "Lunch" in chosen_names or "Snacks" in chosen_names or "" in chosen_names:
                 easygui.msgbox("Please do not select the default blank fields or the following heading labels:\n'Morning Tea', 'Lunch' or 'Snacks'")
                 continue   # shows the menu again
-
+            
             elif frenchaddon in chosen and frenchtoast not in chosen:
-                easygui.msgbox("Please select the French Toast with butter and maple syrup if you want to add on berries and whipped cream.")
+                easygui.msgbox("Please select French Toast with butter and maple syrup if you want this add on.")
                 continue   # shows the menu again
 
-            elif pancakesaddon in chosen and buttermilk not in chosen and nutella not in chosen and doublechoc not in chosen:
-                easygui.msgbox("Please select a Pancakes menu item if you want berries and choc ice cream. The following pancakes you can choose from is:\nButtermilk Pancakes, Nutella Pancakes and Double Choc Pancakes")
+            elif buttermilkaddon in chosen and buttermilk not in chosen:
+                easygui.msgbox("Please select Buttermilk Pancakes if you want this add-on.")
                 continue   # shows the menu again
 
-            elif gf_pasta in chosen and alfredo not in chosen and marinara not in chosen and pesto not in chosen and macncheese not in chosen:
-                easygui.msgbox("Please select a Pasta menu item if you want Gluten Free (GF) pasta. The following pastas you can choose from is:\nCreamy Chicken Alfredo, Meatballs Marinara, Pesto and Mac N' Cheese.")
+            elif nutellaaddon in chosen and nutella not in chosen:
+                easygui.msgbox("Please select Nutella Pancakes if you want this add-on.")
+                continue   # shows the menu again
+
+            elif doublechocaddon in chosen and doublechoc not in chosen:
+                easygui.msgbox("Please select Double Choc Pancakes if you want this add-on.")
+                continue   # shows the menu again
+
+            elif alfredoaddon in chosen and alfredo not in chosen:
+                easygui.msgbox("Please select Creamy Chicken Alfredo if you want Gluten Free (GF) penne.")
+                continue   # shows the menu again
+
+            elif marinaraaddon in chosen and marinara not in chosen:
+                easygui.msgbox("Please select Meatballs Marinara if you want Gluten Free (GF) fettuccine.")
+                continue   # shows the menu again
+
+            elif pestoaddon in chosen and pesto not in chosen:
+                easygui.msgbox("Please select Pesto Pasta if you want Gluten Free (GF) linguini.")
+                continue   # shows the menu again
+
+            elif macaddon in chosen and macncheese not in chosen:
+                easygui.msgbox("Please select Mac N' Cheese if you want Gluten Free (GF) macaroni.")
                 continue   # shows the menu again
 
             # adds valid selected items to the order
@@ -173,7 +201,7 @@ def drinks_order_menu():
         # ignore code format - it is due to aligning prices of menu items in proper, neat order when code is run
         deluxeaddon = "     + deluxe (+4 pumps molten choc)                                                                               -  +$1.50"
         standardaddon = "     + standard (+2 pumps molten choc)                                                                           -  +$0.50"
-        hotchocolate = "   Hot Chocolate                                                                                                          - $4.70"
+        hotchocolate = "   Hot Chocolate                                                                                                           - $4.70"
 
         if chosen:
             chosen_names = []           # stores selected items without extra spaces
